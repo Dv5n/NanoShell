@@ -80,7 +80,7 @@ public class NanoShell
 			String argument = cmdParts[1].trim();
 
 			if ("echo".equals(command)) {
-				System.out.println(argument); // 
+				System.out.println(argument); // Displays the specified text.
 			} else if ("cd".equals(command)) {
 				changeDir(argument); // Change directory.
 			} else if ("ls".equals(command)) {
