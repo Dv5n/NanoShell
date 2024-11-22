@@ -31,7 +31,7 @@ import com.HappyCow.ShellUtilities.MoreUtilities; // For more shell utilities (e
 */
 public class NanoShell
 {
-	public final String version = "0.4_alpha";
+	public final String version = "0.4.1_alpha";
 
 	private final String helpPrefix = "#==============================#";
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
@@ -59,9 +59,8 @@ public class NanoShell
 					continue;
 				}
 
-				else if (cmd.equals("exit"))
-				{
-					System.out.println("Goodbye!");
+				else if (cmd.equals("exit")) {
+					System.out.println("Bye!");
 					break;
 				}
 				executeCommand(cmd);
@@ -81,29 +80,29 @@ public class NanoShell
 			String argument = cmdParts[1].trim();
 
 			if ("echo".equals(command)) {
-				System.out.println(argument);
+				System.out.println(argument); // 
 			} else if ("cd".equals(command)) {
-				changeDir(argument);
+				changeDir(argument); // Change directory.
 			} else if ("ls".equals(command)) {
 				FolderManagement.list(argument); // Lists contents from the specified path.
 			} else if ("touch".equals(command)) {
-				FolderManagement.touch(argument);
+				FolderManagement.touch(argument); // Create empty file.
 			} else if ("mkdir".equals(command)) {
-				FolderManagement.mkdir(argument);
+				FolderManagement.mkdir(argument); // Create empty folder.
 			} else if ("rmdir".equals(command)) {
-				FolderManagement.rmdir(argument);
+				FolderManagement.rmdir(argument); // Remove empty folder.
 			} else if ("rm".equals(command)) {
-				FolderManagement.rm(argument);
+				FolderManagement.rm(argument); // Remove file.
 			} else if ("cat".equals(command)) {
-				FolderManagement.cat(argument);
+				FolderManagement.cat(argument); // Displays a file.
 			} else if ("ping".equals(command)) {
-				NetworkUtilities.ping(argument);
+				NetworkUtilities.ping(argument); // Contact a host.
 			} else if ("find".equals(command)) {
-				MoreUtilities.find(argument);
+				MoreUtilities.find(argument); // Find a file.
 			} else if ("stat".equals(command)) {
-				MoreUtilities.stat(argument);
+				MoreUtilities.stat(argument); // Display information about a file.
 			} else if ("wget".equals(command)) {
-				NetworkUtilities.wget(argument);
+				NetworkUtilities.wget(argument); // Download a file from the internet.
 			}
 		}
 		else
