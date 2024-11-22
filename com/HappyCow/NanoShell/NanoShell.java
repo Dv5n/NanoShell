@@ -33,7 +33,7 @@ public class NanoShell
 {
 	public final String version = "0.4.1_alpha";
 
-	private final String helpPrefix = "#==============================#";
+	private final String helpPrefix = "#=================================#";
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
 	public static File getCurrentDir() {return currentDirectory;}
@@ -131,6 +131,7 @@ public class NanoShell
 					"15. find <filename> - Find the specified file.\n"+
 					"16. stat <filename> - Display file information.\n"+
 					"17. wget <host> - Download the specified file.");
+					new Clock().HelpClock();
 					break;
 				case "echo":
 					System.out.println("Use: echo <your text>"); // Default if no text is provided.

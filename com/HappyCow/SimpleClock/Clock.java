@@ -46,4 +46,9 @@ public class Clock
 			System.out.println(SimpleClockGraphics[i]);
 		}
 	}
+
+	public void HelpClock()
+	{
+		System.out.println("Clock: "+localClock);
+	}
 }
