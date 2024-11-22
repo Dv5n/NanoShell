@@ -6,4 +6,4 @@ It has 15+ commands including useful commands like: `mkdir`, `rmdir`, `touch`, `
 ## Running
 You can compile it using `make` or `make build` and then `make run` or running the jar file with `java -jar NanoShell.jar`
 
-If there are any error messages, I will be happy to fix it! Just open an issue and I will help you.
+If there are any error messages, I will be happy to fix! Just open an issue and I will help you.
