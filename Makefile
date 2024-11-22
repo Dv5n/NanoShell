@@ -6,7 +6,6 @@ JAVAC=javac
 PATH_M=com/HappyCow/NanoShell
 PATH_N=com/HappyCow/SimpleClock
 PATH_O=com/HappyCow/ShellUtilities
-#PATH_P=com/HappyCow/ShellFun
 #===========================================================================================#
 build:
 	$(info Info: Compiler: $(JAVAC))
