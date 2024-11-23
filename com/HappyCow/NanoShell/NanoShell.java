@@ -32,7 +32,7 @@ import com.HappyCow.Plugins.PluginManager.PluginManager; // For loading plugins.
 */
 public class NanoShell
 {
-	public final String version = "0.4.1_alpha";
+	public final String version = "0.4.2_alpha";
 
 	private final String helpPrefix = "#=================================#";
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
