@@ -25,15 +25,16 @@ import com.HappyCow.SimpleClock.Clock; // For the clock command.
 import com.HappyCow.ShellUtilities.FolderManagement; // For shell utilities (e.g. mkdir, rmdir, touch, cat etc.)
 import com.HappyCow.ShellUtilities.NetworkUtilities; // For the ping and wget command.
 import com.HappyCow.ShellUtilities.MoreUtilities; // For more shell utilities (e.g. find, stat)
+import com.HappyCow.Plugins.PluginManager.PluginManager; // For loading plugins.
 
 /**
 * Main class. More soon!
 */
 public class NanoShell
 {
-	public final String version = "0.4_alpha";
+	public final String version = "0.4.3_alpha";
 
-	private final String helpPrefix = "#==============================#";
+	private final String helpPrefix = "#=================================#";
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
 	public static File getCurrentDir() {return currentDirectory;}
@@ -59,9 +60,8 @@ public class NanoShell
 					continue;
 				}
 
-				else if (cmd.equals("exit"))
-				{
-					System.out.println("Goodbye!");
+				else if (cmd.equals("exit")) {
+					System.out.println("Bye!");
 					break;
 				}
 				executeCommand(cmd);
@@ -81,29 +81,31 @@ public class NanoShell
 			String argument = cmdParts[1].trim();
 
 			if ("echo".equals(command)) {
-				System.out.println(argument);
+				System.out.println(argument); // Displays the specified text.
 			} else if ("cd".equals(command)) {
-				changeDir(argument);
+				changeDir(argument); // Change directory.
 			} else if ("ls".equals(command)) {
 				FolderManagement.list(argument); // Lists contents from the specified path.
 			} else if ("touch".equals(command)) {
-				FolderManagement.touch(argument);
+				FolderManagement.touch(argument); // Create empty file.
 			} else if ("mkdir".equals(command)) {
-				FolderManagement.mkdir(argument);
+				FolderManagement.mkdir(argument); // Create empty folder.
 			} else if ("rmdir".equals(command)) {
-				FolderManagement.rmdir(argument);
+				FolderManagement.rmdir(argument); // Remove empty folder.
 			} else if ("rm".equals(command)) {
-				FolderManagement.rm(argument);
+				FolderManagement.rm(argument); // Remove file.
 			} else if ("cat".equals(command)) {
-				FolderManagement.cat(argument);
+				FolderManagement.cat(argument); // Displays a file.
 			} else if ("ping".equals(command)) {
-				NetworkUtilities.ping(argument);
+				NetworkUtilities.ping(argument); // Contact a host.
 			} else if ("find".equals(command)) {
-				MoreUtilities.find(argument);
+				MoreUtilities.find(argument); // Find a file.
 			} else if ("stat".equals(command)) {
-				MoreUtilities.stat(argument);
+				MoreUtilities.stat(argument); // Display information about a file.
 			} else if ("wget".equals(command)) {
-				NetworkUtilities.wget(argument);
+				NetworkUtilities.wget(argument); // Download a file from the internet.
+			} else if ("loadplugin".equals(command)) {
+				PluginManager.loadPlugin(argument); // Load a specified plugin.
 			}
 		}
 		else
@@ -131,7 +133,8 @@ public class NanoShell
 					"14. ping <host> - Test connection (i.e. ping a host)\n"+
 					"15. find <filename> - Find the specified file.\n"+
 					"16. stat <filename> - Display file information.\n"+
-					"17. wget <host> - Download the specified file.");
+					"17. wget <host> - Download the specified file.\n"+
+					"18. loadplugin <plugin> - Load the specified plugin");
 					break;
 				case "echo":
 					System.out.println("Use: echo <your text>"); // Default if no text is provided.
@@ -144,8 +147,7 @@ public class NanoShell
 					System.out.flush(); // Make sure the screen is cleared.
 					break;
 				case "clock":
-					Clock clock = new Clock();
-					clock.SimpleClock();
+					new Clock().SimpleClock();
 					break;
 				case "pwd":
 					System.out.println(currentDirectory.getAbsolutePath()); // Displays the full path.
@@ -179,6 +181,9 @@ public class NanoShell
 					break;
 				case "ls":
 					FolderManagement.list(""); // List contents from the current directory.
+					break;
+				case "loadplugin":
+					System.out.println("Use: loadplugin <plugin>\nExample: loadplugin com.HappyCow.Plugins.ExamplePlugin"); // Default if no plugin is provided.
 					break;
 				default:
 					System.out.println("Unknown command: "+cmd);

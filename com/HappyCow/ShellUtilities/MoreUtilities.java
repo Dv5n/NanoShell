@@ -65,25 +65,4 @@ public class MoreUtilities
 			System.out.println("File not found: "+filename);
 		}
 	}
-
-/* Not important now
-	public static void alias(String alias, String command)
-	{
-		aliases.put(alias, command);
-		System.out.println("Alias set: "+alias+"-> "+command);
-	}
-
-	public static void unalias(String alias)
-	{
-		if (aliases.remove(alias) != null)
-		{
-			System.out.println("Alias removed: "+alias);
-		}
-		else
-		{
-			System.out.println("Alias not found: "+alias);
-		}
-	}
-*/
-
 }
