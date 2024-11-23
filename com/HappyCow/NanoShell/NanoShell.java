@@ -25,6 +25,7 @@ import com.HappyCow.SimpleClock.Clock; // For the clock command.
 import com.HappyCow.ShellUtilities.FolderManagement; // For shell utilities (e.g. mkdir, rmdir, touch, cat etc.)
 import com.HappyCow.ShellUtilities.NetworkUtilities; // For the ping and wget command.
 import com.HappyCow.ShellUtilities.MoreUtilities; // For more shell utilities (e.g. find, stat)
+import com.HappyCow.Plugins.PluginManager.PluginManager; // For loading plugins.
 
 /**
 * Main class. More soon!
@@ -103,6 +104,8 @@ public class NanoShell
 				MoreUtilities.stat(argument); // Display information about a file.
 			} else if ("wget".equals(command)) {
 				NetworkUtilities.wget(argument); // Download a file from the internet.
+			} else if ("loadplugin".equals(command)) {
+				PluginManager.loadPlugin(argument); // Load a specified plugin.
 			}
 		}
 		else
@@ -130,7 +133,8 @@ public class NanoShell
 					"14. ping <host> - Test connection (i.e. ping a host)\n"+
 					"15. find <filename> - Find the specified file.\n"+
 					"16. stat <filename> - Display file information.\n"+
-					"17. wget <host> - Download the specified file.");
+					"17. wget <host> - Download the specified file.\n"+
+					"18. loadplugin <plugin> - Load the specified plugin");
 					new Clock().HelpClock();
 					break;
 				case "echo":
@@ -179,6 +183,9 @@ public class NanoShell
 					break;
 				case "ls":
 					FolderManagement.list(""); // List contents from the current directory.
+					break;
+				case "loadplugin":
+					System.out.println("Use: loadplugin <plugin>\nExample: loadplugin com.HappyCow.Plugins.ExamplePlugin"); // Default if no plugin is provided.
 					break;
 				default:
 					System.out.println("Unknown command: "+cmd);

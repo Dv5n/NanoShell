@@ -41,10 +41,9 @@ public class Clock
 
 	public void SimpleClock()
 	{
-		for (int i=0; i < SimpleClockGraphics.length; i++)
-		{
-			System.out.println(SimpleClockGraphics[i]);
-		}
+		System.out.println(SimpleClockGraphics[0]);
+		System.out.println(SimpleClockGraphics[1]);
+		System.out.println(SimpleClockGraphics[2]);
 	}
 
 	public void HelpClock()
