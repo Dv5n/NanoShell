@@ -6,10 +6,10 @@ import java.time.format.DateTimeFormatter;
 public class Clock
 {
 	LocalDateTime localTime = LocalDateTime.now();
-	DateTimeFormatter clockFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+	final DateTimeFormatter clockFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
 	String localClock = localTime.format(clockFormat);
-	String SimpleClockGraphics[] =
+	final String SimpleClockGraphics[] =
 	{
 		"#=[Clock]=============#",
 		"# "+localClock+" #",
@@ -23,13 +23,15 @@ public class Clock
 
 	public void SimpleClock()
 	{
-		System.out.println(SimpleClockGraphics[0]);
-		System.out.println(SimpleClockGraphics[1]);
-		System.out.println(SimpleClockGraphics[2]);
+		System.out.println(SimpleClockGraphics[0]+"\n"+
+				SimpleClockGraphics[1]+"\n"+
+				SimpleClockGraphics[2]);
 	}
 
+/*
 	public void HelpClock()
 	{
 		System.out.println("Clock: "+localClock);
 	}
+*/
 }
