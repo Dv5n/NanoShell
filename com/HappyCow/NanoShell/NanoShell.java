@@ -40,6 +40,7 @@ public class NanoShell
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
 	public final String version = "0.4.3_alpha";
+	public final String promptColor = "\033[32m"; 
 	public static File getCurrentDir() {return currentDirectory;}
 
 	public static void main(String[] args)
@@ -57,7 +58,7 @@ public class NanoShell
 		{
 			while (true)
 			{
-				System.out.print(prompt+": ");
+				System.out.print(promptColor+prompt+": "+"\033[0m");
 				final String cmd = cmdScanner.nextLine().trim();
 
 				if (cmd.isEmpty()) {
@@ -116,29 +117,29 @@ public class NanoShell
 			switch (cmd)
 			{
 				case "help":
-					System.out.println(helpPrefix+"\n# NanoShell, version: "+version+"\n"+helpPrefix+"\n"+
-					"Licensed under GNU GPL.\n"+
-					"(Note: (o) = Optional argument)\n"+
-					"Commands:\n"+
-					"1. exit - Exits the shell.\n"+
-					"2. help - Shows a list of commands.\n"+
-					"3. echo <text> - Displays <text>.\n"+
-					"4. ls (o)<path> - Lists contents in the specified path.\n"+
-					"5. cd <path> - Change current directory to <path>.\n"+
-					"6. pwd - Displays the full directory path.\n"+
-					"7. clear - Clear the display.\n"+
-					"8. clock - Displays the current date and time.\n"+
-					"9. touch <filename> - Create a file.\n"+
-					"10. mkdir <name> - Create a folder.\n"+
-					"11. rmdir <name> - Delete a empty folder\n"+
-					"12. rm <filename> - Delete a file\n"+
-					"13. cat <filename> - Display a text file.\n"+
-					"14. ping <host> - Test connection (i.e. ping a host)\n"+
-					"15. find <filename> - Find the specified file.\n"+
-					"16. stat <filename> - Display file information.\n"+
-					"17. wget <host> - Download the specified file.\n"+
-					"18. loadplugin <plugin> - Load the specified plugin\n"+
-					"19. history - Shows the history of previously run commands.");
+					System.out.println(helpPrefix+"\n# NanoShell, version: "+version+"\n"+helpPrefix+
+						"\n(Note: (o) = Optional argument)\n"+
+						"Commands:\n"+
+						"1. exit - Exits the shell.\n"+
+						"2. help - Shows a list of commands.\n"+
+						"3. echo <text> - Displays <text>.\n"+
+						"4. ls (o)<path> - Lists contents in the specified path.\n"+
+						"5. cd <path> - Change current directory to <path>.\n"+
+						"6. pwd - Displays the full directory path.\n"+
+						"7. clear - Clear the display.\n"+
+						"8. clock - Displays the current date and time.\n"+
+						"9. touch <filename> - Create a file.\n"+
+						"10. mkdir <name> - Create a folder.\n"+
+						"11. rmdir <name> - Delete a empty folder\n"+
+						"12. rm <filename> - Delete a file\n"+
+						"13. cat <filename> - Display a text file.\n"+
+						"14. ping <host> - Test connection (i.e. ping a host)\n"+
+						"15. find <filename> - Find the specified file.\n"+
+						"16. stat <filename> - Display file information.\n"+
+						"17. wget <host> - Download the specified file.\n"+
+						"18. loadplugin <plugin> - Load the specified plugin\n"+
+						"19. history - Shows the history of previously run commands.\n"+
+						"20. systeminfo - Shows information about the system");
 					break;
 				case "echo":
 					System.out.println("Use: echo <your text>"); // Default if no text is provided.
@@ -185,6 +186,9 @@ public class NanoShell
 					break;
 				case "history":
 					MoreUtilities.showHistory(); // Shows the history of previously run commands.
+					break;
+				case "systeminfo":
+					MoreUtilities.systeminfo(); // Shows information about the system.
 					break;
 				case "ls":
 					FolderManagement.list(""); // List contents from the current directory.

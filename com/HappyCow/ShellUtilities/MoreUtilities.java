@@ -72,6 +72,11 @@ public class MoreUtilities
 		}
 	}
 
+	/**
+	* Function to add commands to history.
+	*
+	* @param cmd The Command to include.
+	*/
 	public static void addCommandToHistory(String cmd)
 	{
 		commandHistory.add(cmd);
@@ -81,17 +86,29 @@ public class MoreUtilities
 		}
 	}
 
+	/**
+	* Function to list the commands from the history.
+	*/
 	public static void showHistory()
 	{
 		commandHistory.forEach(System.out::println);
 	}
 
+	/**
+	* Function to display information about the system.
+	*/
 	public static void systeminfo()
 	{
 		System.out.println("OS: "+System.getProperty("os.name")+
-						"Arhitecture: "+System.getProperty("os.arch")+
-						"Available processors: "+Runtime.getRuntime().availableProcessors()+
-						"Memory (free/total): "+Runtime.getRuntime().freeMemory() / 1024 +" KB / "+
-						Runtime.getRuntime().totalMemory() / 1024 +" KB");
+						"\nArchitecture: "+System.getProperty("os.arch")+
+						"\nAvailable cores: "+Runtime.getRuntime().availableProcessors()+
+						"\nMemory (free/total): "+(Runtime.getRuntime().freeMemory() / 1024 / 1024) +" MB / "+
+						(Runtime.getRuntime().totalMemory() / 1024 / 1024) +" MB");
+
+		File root = new File("/");
+		long totalSpace = root.getTotalSpace();
+		long freeSpace = root.getFreeSpace();
+		System.out.println("Disk (free/total): "+(freeSpace / 1024 / 1024) + " MB / "+
+						(totalSpace / 1024 / 1024) + " MB");
 	}
 }
