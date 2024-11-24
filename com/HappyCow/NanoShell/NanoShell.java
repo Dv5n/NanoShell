@@ -32,11 +32,14 @@ import com.HappyCow.Plugins.PluginManager.PluginManager; // For loading plugins.
 */
 public class NanoShell
 {
-	public final String version = "0.4.3_alpha";
-
 	private final String helpPrefix = "#=================================#";
+	private final String welcomeText = "#=============================================#\n"+
+									"# NanoShell, see \"help\" for more information. #\n"+
+									"#=============================================#";
+
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
+	public final String version = "0.4.3_alpha";
 	public static File getCurrentDir() {return currentDirectory;}
 
 	public static void main(String[] args)
@@ -49,6 +52,7 @@ public class NanoShell
 	*/
 	public void runShell(String prompt)
 	{
+		System.out.println(welcomeText);
 		try(final Scanner cmdScanner = new Scanner(System.in))
 		{
 			while (true)
@@ -74,6 +78,7 @@ public class NanoShell
 	*/
 	private void executeCommand(String cmd)
 	{
+		MoreUtilities.addCommandToHistory(cmd);
 		if (cmd.contains(" "))
 		{
 			String[] cmdParts = cmd.split(" ", 2);
@@ -107,13 +112,11 @@ public class NanoShell
 			} else if ("loadplugin".equals(command)) {
 				PluginManager.loadPlugin(argument); // Load a specified plugin.
 			}
-		}
-		else
-		{
+		} else {
 			switch (cmd)
 			{
 				case "help":
-					System.out.println(""+helpPrefix+"\n# NanoShell, version: "+version+"\n"+helpPrefix+"\n"+
+					System.out.println(helpPrefix+"\n# NanoShell, version: "+version+"\n"+helpPrefix+"\n"+
 					"Licensed under GNU GPL.\n"+
 					"(Note: (o) = Optional argument)\n"+
 					"Commands:\n"+
@@ -134,7 +137,8 @@ public class NanoShell
 					"15. find <filename> - Find the specified file.\n"+
 					"16. stat <filename> - Display file information.\n"+
 					"17. wget <host> - Download the specified file.\n"+
-					"18. loadplugin <plugin> - Load the specified plugin");
+					"18. loadplugin <plugin> - Load the specified plugin\n"+
+					"19. history - Shows the history of previously run commands.");
 					break;
 				case "echo":
 					System.out.println("Use: echo <your text>"); // Default if no text is provided.
@@ -178,6 +182,9 @@ public class NanoShell
 					break;
 				case "wget":
 					System.out.println("Use: wget <host>"); // Default if no host is provided.
+					break;
+				case "history":
+					MoreUtilities.showHistory(); // Shows the history of previously run commands.
 					break;
 				case "ls":
 					FolderManagement.list(""); // List contents from the current directory.
