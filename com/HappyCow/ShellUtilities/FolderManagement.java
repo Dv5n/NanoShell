@@ -19,11 +19,7 @@ public class FolderManagement
 		File file = new File(NanoShell.getCurrentDir(), filename);
 		try
 		{
-			if (file.createNewFile())
-			{
-				System.out.println("File created: "+filename);
-			}
-			else
+			if (!file.createNewFile())
 			{
 				System.out.println("File already exists.");
 			}
@@ -44,11 +40,7 @@ public class FolderManagement
 		File file = new File(NanoShell.getCurrentDir(), filename);
 		if (file.exists() && file.isFile())
 		{
-			if (file.delete())
-			{
-				System.out.println("File removed: "+filename);
-			}
-			else
+			if (!file.delete())
 			{
 				System.out.println("Failed to delete file.");
 			}
@@ -67,11 +59,7 @@ public class FolderManagement
 	public static void mkdir(String dirname)
 	{
 		File dir = new File(NanoShell.getCurrentDir(), dirname);
-		if (dir.mkdir())
-		{
-			System.out.println("Directory created: "+dirname);
-		}
-		else
+		if (!dir.mkdir())
 		{
 			System.out.println("Failed to create directory or it already exists.");
 		}
@@ -87,11 +75,7 @@ public class FolderManagement
 		File dir = new File(NanoShell.getCurrentDir(), dirname);
 		if (dir.exists() && dir.isDirectory())
 		{
-			if (dir.delete())
-			{
-				System.out.println("Directory deleted: "+dirname);
-			}
-			else
+			if (!dir.delete())
 			{
 				System.out.println("Failed to delete directory. Make sure it is empty.");
 			}

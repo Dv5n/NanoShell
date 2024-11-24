@@ -39,7 +39,7 @@ public class NanoShell
 
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
-	public final String version = "0.4.3_alpha";
+	public final String version = "0.5_alpha";
 	public final String promptColor = "\033[32m"; 
 	public static File getCurrentDir() {return currentDirectory;}
 
