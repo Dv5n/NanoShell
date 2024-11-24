@@ -21,6 +21,7 @@ package com.HappyCow.NanoShell;
 import java.util.Scanner; // Import for running commands.
 import java.io.File; // Import for files and directories management.
 
+// Local imports.
 import com.HappyCow.SimpleClock.Clock; // For the clock command.
 import com.HappyCow.ShellUtilities.FolderManagement; // For shell utilities (e.g. mkdir, rmdir, touch, cat etc.)
 import com.HappyCow.ShellUtilities.NetworkUtilities; // For the ping and wget command.
@@ -28,7 +29,7 @@ import com.HappyCow.ShellUtilities.MoreUtilities; // For more shell utilities (e
 import com.HappyCow.Plugins.PluginManager.PluginManager; // For loading plugins.
 
 /**
-* Main class. More soon!
+* Main class.
 */
 public class NanoShell
 {
@@ -39,7 +40,7 @@ public class NanoShell
 
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
-	public final String version = "0.5_alpha";
+	public final String version = "0.5.1_alpha";
 	public final String promptColor = "\033[32m"; 
 	public static File getCurrentDir() {return currentDirectory;}
 
