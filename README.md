@@ -1,7 +1,7 @@
 # NanoShell
 Simple Java shell, but with many useful features!
 
-It has 15+ commands including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, and *many* others!
+It has 18+ commands including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, and *many* others!
 
 ## Running
 You can compile it using `make` or `make build` and then `make run` or running the jar file with `make runJar`.
@@ -21,4 +21,4 @@ Run plugins using: `pluginload com.HappyCow.Plugins.<YourPluginNameHere!>`.
 > Make sure to don't use the file extension (e.g. `.java` or `.class`) because it will not work, use just the name of the file (e.g. `pluginload com.HappyCow.Plugins.ExamplePlugin`.
 
 ## Contribute
-If you want to contribute to NanoShell, fork the repo, do changes and create a pull request, if I like it, I will merge it into the main branch.
+If you'd like to contribute to NanoShell, fork the repository, make your changes, and submit a pull request. If I like the changes, I will merge them into the main branch.
