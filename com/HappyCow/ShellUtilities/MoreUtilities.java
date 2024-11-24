@@ -8,6 +8,9 @@ import java.util.List;
 
 import com.HappyCow.NanoShell.NanoShell;
 
+/**
+* MoreUtilities class, More functions and utilities.
+*/
 public class MoreUtilities
 {
 	public static List<String> commandHistory = new ArrayList<>();

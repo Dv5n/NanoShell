@@ -2,6 +2,9 @@ package com.HappyCow.Plugins.PluginManager;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+* PluginManager class, for plugin management.
+*/
 public class PluginManager
 {
 	public static void loadPlugin(String pluginName)

@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 import com.HappyCow.NanoShell.NanoShell;
 
+/**
+* FolderManagement class, for creating or removing files or folders.
+*/
 public class FolderManagement
 {
 	/**

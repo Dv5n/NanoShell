@@ -12,6 +12,9 @@ import java.io.FileOutputStream;
 
 import com.HappyCow.NanoShell.NanoShell;
 
+/**
+* NetworkUtilities, Utilities for network tasks like ping and wget.
+*/
 public class NetworkUtilities
 {
 	/**

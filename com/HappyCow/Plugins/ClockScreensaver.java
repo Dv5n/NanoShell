@@ -6,14 +6,23 @@ import java.time.format.DateTimeFormatter;
 
 import com.HappyCow.Plugins.PluginManager.Plugin;
 
+/**
+* Clock Screensaver Plugin class.
+*/
 public class ClockScreensaver implements Plugin
 {
+	/**
+	* Function that is executed by PluginManager.
+	*/
 	@Override
 	public void execute()
 	{
 		new ClockScreensaver().Screensaver();
 	}
 
+	/**
+	* The main Screensaver function.
+	*/
 	public void Screensaver()
 	{
 		DateTimeFormatter clockFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -30,7 +39,7 @@ public class ClockScreensaver implements Plugin
 							"#=====================#");
 			try
 			{
-				Thread.sleep(1000);
+				Thread.sleep(1000); // Sleep 1 second.
 			}
 			catch (InterruptedException e)
 			{
