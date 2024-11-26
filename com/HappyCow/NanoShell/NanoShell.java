@@ -156,7 +156,8 @@ public class NanoShell
 						"18. loadplugin <plugin> - Load the specified plugin\n"+
 						"19. history - Shows the history of previously run commands.\n"+
 						"20. systeminfo - Shows information about the system\n"+
-						"21. settings - Shows/sets settings.");
+						"21. settingSet <setting> <value> - Sets settings to specified values.\n"+
+						"22. settingList - Shows available settings.");
 					break;
 				case "echo":
 					System.out.println("Use: echo <your text>"); // Default if no text is provided.
@@ -196,7 +197,7 @@ public class NanoShell
 					SettingsManager.getSetting();
 					break;
 				case "settingSet":
-					System.out.println("Use: settingSet <setting> <value>"); // Default if no setting on value is provided.
+					System.out.println("Use: settingSet <setting> <value>"); // Default if no setting or value is provided.
 					break;
 				case "find":
 					System.out.println("Use: find <filename>"); // Default if no filename is provided.
