@@ -43,7 +43,6 @@ public class NanoShell
 
 	public final String version = "0.5.1_alpha";
 	public final String promptColor = "\033[32m"; 
-	public static final boolean Developer = true;
 	public static File getCurrentDir() {return currentDirectory;}
 
 	public static void main(String[] args)
@@ -118,6 +117,17 @@ public class NanoShell
 				NetworkUtilities.wget(argument); // Download a file from the internet.
 			} else if ("loadplugin".equals(command)) {
 				PluginManager.loadPlugin(argument); // Load a specified plugin.
+			} else if ("settingSet".equals(command)) {
+				String[] settingsParts = argument.split(" ", 2);
+				if (settingsParts.length == 2)
+				{
+					boolean value = Boolean.parseBoolean(settingsParts[1]);
+					SettingsManager.setSetting(settingsParts[0], value);
+				}
+				else
+				{
+					System.out.println("Use: settingSet <setting> <value>");
+				}
 			}
 		} else {
 			switch (cmd)
@@ -145,7 +155,8 @@ public class NanoShell
 						"17. wget <host> - Download the specified file.\n"+
 						"18. loadplugin <plugin> - Load the specified plugin\n"+
 						"19. history - Shows the history of previously run commands.\n"+
-						"20. systeminfo - Shows information about the system");
+						"20. systeminfo - Shows information about the system\n"+
+						"21. settings - Shows/sets settings.");
 					break;
 				case "echo":
 					System.out.println("Use: echo <your text>"); // Default if no text is provided.
@@ -181,8 +192,14 @@ public class NanoShell
 				case "ping":
 					System.out.println("Use: ping <host>"); // Default if no host is provided.
 					break;
+				case "settingList":
+					SettingsManager.getSetting();
+					break;
+				case "settingSet":
+					System.out.println("Use: settingSet <setting> <value>"); // Default if no setting on value is provided.
+					break;
 				case "find":
-					System.out.println("Use: find <filename>"); // Default if no host or filename is provided.
+					System.out.println("Use: find <filename>"); // Default if no filename is provided.
 					break;
 				case "stat":
 					System.out.println("Use: stat <filename>"); // Default if no file is provided.

@@ -11,7 +11,7 @@ public class LogDog
 
 	public static void log(String message)
 	{
-		if (NanoShell.Developer)
+		if (SettingsManager.LogDogEnable)
 		{
 			try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogFile, true)))
 			{
@@ -20,7 +20,7 @@ public class LogDog
 			}
 			catch (IOException e)
 			{
-			System.out.println("Error writing to log file: "+e.getMessage());
+				System.out.println("Error writing to log file: "+e.getMessage());
 			}
 		}
 	}
