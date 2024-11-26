@@ -34,6 +34,7 @@ import com.HappyCow.Plugins.PluginManager.PluginManager; // For loading plugins.
 public class NanoShell
 {
 	private final String helpPrefix = "#=================================#";
+
 	private final String welcomeText = "#=============================================#\n"+
 									"# NanoShell, see \"help\" for more information. #\n"+
 									"#=============================================#";
@@ -42,10 +43,13 @@ public class NanoShell
 
 	public final String version = "0.5.1_alpha";
 	public final String promptColor = "\033[32m"; 
+	public static final boolean Developer = true;
 	public static File getCurrentDir() {return currentDirectory;}
 
 	public static void main(String[] args)
 	{
+		new File(LogDog.LogFile).delete();
+		LogDog.log("NanoShell | LogDog");
 		new NanoShell().runShell("HappyCow"); // Run the shell with the specified prompt.
 	}
 
@@ -68,6 +72,7 @@ public class NanoShell
 
 				else if (cmd.equals("exit")) {
 					System.out.println("Bye!");
+					LogDog.log("Exit...");
 					break;
 				}
 				executeCommand(cmd);
