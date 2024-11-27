@@ -41,7 +41,7 @@ public class NanoShell
 
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
-	public final String version = "0.5.1_alpha";
+	public final String version = "0.5.2_alpha";
 	public final String promptColor = "\033[32m"; 
 	public static File getCurrentDir() {return currentDirectory;}
 
@@ -223,7 +223,6 @@ public class NanoShell
 				default:
 					System.out.println("Unknown command: "+cmd);
 					System.out.println("Type \"help\" for a list of commands.");
-					break;
 			}
 		}
 	}
