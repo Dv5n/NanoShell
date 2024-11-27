@@ -1,13 +1,15 @@
 ## TODO ideas
 
 ### Priority: HIGH
-Find and fix bugs.
+1. Find and fix bugs.
 
 ### Priority: Medium
-Add more exception handling.
+1. Add more exception handling.
+2. Add a feature to list available plugins.
 
 ### Priority: Low
-Add a calculator (maybe plugin)
+1. Add a calculator (maybe plugin)
+2. Allow custom prompts (using a setting)
 
 ## Additional notes
 
