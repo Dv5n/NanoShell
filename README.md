@@ -6,7 +6,7 @@ It has 20+ commands including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd
 ## Running
 You can compile it using `make` or `make build` and then `make run` or running the jar file with `make runJar`.
 
-If there are any error messages, while compiling or running, I will be happy to fix! Just open an issue and I will help you.
+If you run into any errors while compiling or running the shell, let me know! Just open an issue, and I will be happy to fix it.
 
 ## Plugins
 Plugins are apps, features or even games to NanoShell.
