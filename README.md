@@ -1,7 +1,7 @@
 # NanoShell
 Simple Java shell, but with many useful features!
 
-It has 18+ commands including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, and *many* others!
+It has 20+ commands including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, `find`, `systeminfo`, and *many* others!
 
 ## Running
 You can compile it using `make` or `make build` and then `make run` or running the jar file with `make runJar`.
