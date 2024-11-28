@@ -43,7 +43,6 @@ public class NanoShell
 
 	public final String version = "0.5.2_alpha";
 	public final String promptColor = "\033[32m";
-	public String prompt;
 	public static File getCurrentDir() {return currentDirectory;}
 
 	public static void main(String[] args)
@@ -119,7 +118,7 @@ public class NanoShell
 			} else if ("loadplugin".equals(command)) {
 				PluginManager.loadPlugin(argument); // Load a specified plugin.
 			} else if ("prompt".equals(command)) {
-				main(argument); // Reload the shell with the specified prompt.
+				runShell(argument); // Reload the shell with the specified prompt.
 				System.exit(0); // Make sure to exit the shell.
 			} else if ("settingSet".equals(command)) {
 				String[] settingsParts = argument.split(" ", 2);
