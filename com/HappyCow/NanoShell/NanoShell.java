@@ -42,7 +42,8 @@ public class NanoShell
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
 	public final String version = "0.5.2_alpha";
-	public final String promptColor = "\033[32m"; 
+	public final String promptColor = "\033[32m";
+	public String prompt;
 	public static File getCurrentDir() {return currentDirectory;}
 
 	public static void main(String[] args)
@@ -117,6 +118,9 @@ public class NanoShell
 				NetworkUtilities.wget(argument); // Download a file from the internet.
 			} else if ("loadplugin".equals(command)) {
 				PluginManager.loadPlugin(argument); // Load a specified plugin.
+			} else if ("prompt".equals(command)) {
+				main(argument); // Reload the shell with the specified prompt.
+				System.exit(0); // Make sure to exit the shell.
 			} else if ("settingSet".equals(command)) {
 				String[] settingsParts = argument.split(" ", 2);
 				if (settingsParts.length == 2)
@@ -157,7 +161,8 @@ public class NanoShell
 						"19. history - Shows the history of previously run commands.\n"+
 						"20. systeminfo - Shows information about the system\n"+
 						"21. settingSet <setting> <value> - Sets settings to specified values.\n"+
-						"22. settingList - Shows available settings.");
+						"22. settingList - Shows available settings.\n"+
+						"23. prompt <prompt> - Restarts the shell with the specified prompt.");
 					break;
 				case "echo":
 					System.out.println("Use: echo <your text>"); // Default if no text is provided.
@@ -192,6 +197,9 @@ public class NanoShell
 					break;
 				case "ping":
 					System.out.println("Use: ping <host>"); // Default if no host is provided.
+					break;
+				case "prompt":
+					System.out.println("Use prompt <prompt mame>"); // Default if no prompt is provided.
 					break;
 				case "settingList":
 					SettingsManager.getSetting();
