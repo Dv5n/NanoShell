@@ -33,7 +33,7 @@ public class NetworkUtilities
 		catch (UnknownHostException e)
 		{
 			System.out.println("Ping failed: "+e.getMessage());
-			LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
+			com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
 		}
 	}
 
@@ -65,7 +65,7 @@ public class NetworkUtilities
 		catch (IOException e)
 		{
 				System.out.println("Error downloading file: "+e.getMessage());
-				LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
+				com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
 		}
 	}
 

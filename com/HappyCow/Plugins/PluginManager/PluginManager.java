@@ -19,22 +19,22 @@ public class PluginManager
 		catch (ClassNotFoundException e)
 		{
 			System.out.println("Plugin class not found: "+pluginName);
-			LogDog.log("Exception in PluginManager:\n"+e.toString());
+			com.HappyCow.NanoShell.LogDog.log("Exception in PluginManager:\n"+e.toString());
 		}
 		catch (InstantiationException | IllegalAccessException e)
 		{
 			System.out.println("Error instantiating the plugin: "+e.getMessage());
-			LogDog.log("Exception in PluginManager:\n"+e.toString());
+			com.HappyCow.NanoShell.LogDog.log("Exception in PluginManager:\n"+e.toString());
 		}
 		catch (NoSuchMethodException | InvocationTargetException e)
 		{
 			System.out.println("Error invoking plugin constructor: "+e.getMessage());
-			LogDog.log("Exception in PluginManager:\n"+e.toString());
+			com.HappyCow.NanoShell.LogDog.log("Exception in PluginManager:\n"+e.toString());
 		}
 		catch (Exception e)
 		{
 			System.out.println("Error loading plugin: "+e.getMessage());
-			LogDog.log("Exception in PluginManager:\n"+e.toString());
+			com.HappyCow.NanoShell.LogDog.log("Exception in PluginManager:\n"+e.toString());
 		}
 	}
 }

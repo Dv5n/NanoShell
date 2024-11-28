@@ -30,7 +30,7 @@ public class FolderManagement
 		catch (IOException e)
 		{
 			System.out.println("Error creating file: "+e.getMessage());
-			LogDog.log("Exception in FolderManagement:\n"+e.toString());
+			com.HappyCow.NanoShell.LogDog.log("Exception in FolderManagement:\n"+e.toString());
 		}
 	}
 
@@ -110,7 +110,7 @@ public class FolderManagement
 			catch (IOException e)
 			{
 				System.out.println("Error reading file: "+e.getMessage());
-				LogDog.log("Exception in FolderManagement:\n"+e.toString());
+				com.HappyCow.NanoShell.LogDog.log("Exception in FolderManagement:\n"+e.toString());
 			}
 		}
 		else
