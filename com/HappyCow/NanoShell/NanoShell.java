@@ -37,11 +37,12 @@ public class NanoShell
 
 	private final String welcomeText = "#=============================================#\n"+
 									"# NanoShell, see \"help\" for more information. #\n"+
+									"# See: https://github.com/Dv5n/NanoShell #\n"+
 									"#=============================================#";
 
 	private static File currentDirectory = new File(System.getProperty("user.dir"));
 
-	public final String version = "0.5.3_alpha";
+	public final String version = "0.6_alpha";
 	public final String promptColor = "\033[32m";
 	public static File getCurrentDir() {return currentDirectory;}
 
