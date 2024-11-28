@@ -36,4 +36,6 @@ If you'd like to contribute to NanoShell, fork the repository, make your changes
 
 *Milestone* 3. Added new commands and plugin support.
 
-*Milestone* 4. Added new commands and new TODO file
+*Milestone* 4. More improvments, commands and added logging support.
+
+*Milestone* 5. Added new commands and new TODO file
