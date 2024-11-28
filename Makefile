@@ -1,6 +1,6 @@
 #===========================================================================================#
-# NanoShell, Simple UNIX shell in Java.
-# GNU GPL v3 License.
+# NanoShell, Simple Java UNIX shell.
+# Simple, but useful!
 #=[Options]=================================================================================#
 JAVAC=javac
 PATH_M=com/HappyCow/NanoShell
