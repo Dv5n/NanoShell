@@ -197,7 +197,7 @@ public class NanoShell
 				System.out.println("Use: ping <host>"); // Default if no host is provided.
 				break;
 			case "prompt":
-				System.out.println("Use prompt <prompt mame>"); // Default if no prompt is provided.
+				System.out.println("Use: prompt <prompt name>"); // Default if no prompt is provided.
 				break;
 			case "settingList":
 				SettingsManager.getSetting();
@@ -256,14 +256,10 @@ public class NanoShell
 	private void settingSetHandler(String argument)
 	{
 		String[] settingsParts = argument.split(" ", 2);
-			if (settingsParts.length == 2)
-			{
-				boolean value = Boolean.parseBoolean(settingsParts[1]);
-				SettingsManager.setSetting(settingsParts[0], value);
-			}
-			else
-			{
-				System.out.println("Use: settingSet <setting> <value>");
-			}
+		if (settingsParts.length == 2)
+		{
+			boolean value = Boolean.parseBoolean(settingsParts[1]);
+			SettingsManager.setSetting(settingsParts[0], value);
+		}
 	}
 }
