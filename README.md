@@ -17,7 +17,7 @@ Plugins are apps, features or even games to NanoShell.
 
 Plugins are located in: `com/HappyCow/Plugins`.
 
-You can create additional plugins by creating a java file and following the example file `ExamplePlugin.java` or `ClockScreensaver.java`.
+You can create additional plugins by creating a `.java` file and following the example file `ExamplePlugin.java` or `ClockScreensaver.java`.
 
 Run plugins using: `pluginload com.HappyCow.Plugins.<YourPluginNameHere!>`.
 
