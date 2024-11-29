@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for NanoShell
+about: Suggest an idea for NanoShell.
 title: 'Feature Request:'
 labels: enhancement
 assignees: ''
