@@ -1,9 +1,13 @@
 package com.HappyCow.ShellUtilities;
 
 import java.io.File;
+import java.io.Console;
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.List;
 
 import com.HappyCow.NanoShell.NanoShell;
@@ -15,6 +19,8 @@ public class MoreUtilities
 {
 	public static List<String> commandHistory = new ArrayList<>();
 	private static final int MaxHistorySize = 64;
+
+	private static StringBuilder textBuffer = new StringBuilder();
 
 	/**
 	* Function to find a file.
@@ -113,5 +119,52 @@ public class MoreUtilities
 		long freeSpace = root.getFreeSpace();
 		System.out.println("Disk (free/total): "+(freeSpace / 1024 / 1024) + " MB / "+
 						(totalSpace / 1024 / 1024) + " MB");
+	}
+
+	public static void textEdit(String filename)
+	{
+		Console console = System.console();
+		if (console == null)
+		{
+			System.out.println("No console available.");
+			return;
+		}
+
+		System.out.println("+---------------------[Text-Editor]---------------------+\nType \"<$-exit\" to exit, or \"<$-exitNsave\" to exit without saving.");
+
+		String line;
+		StringBuilder text = new StringBuilder();
+		while (true)
+		{
+			line = console.readLine(">");
+			if (line.equals("<$-exit"))
+			{
+				save(filename);
+				break;
+			}
+			if (line.equals("<$-exitNsave"))
+			{
+				break;
+			}
+			textBuffer.append(line).append("\n");
+		}
+	}
+
+	private static void save(String filename)
+	{
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename)))
+		{
+			writer.write(textBuffer.toString());
+			System.out.println("File saved.");
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error while saving to file: "+e.getMessage());
+			com.HappyCow.NanoShell.LogDog.log("Exception in MoreUtilities:\n"+e.toString());
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 }

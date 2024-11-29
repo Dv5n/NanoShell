@@ -34,6 +34,10 @@ public class NetworkUtilities
 		{
 			System.out.println("Ping failed: "+e.getMessage());
 			com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -64,8 +68,12 @@ public class NetworkUtilities
 		}
 		catch (IOException e)
 		{
-				System.out.println("Error downloading file: "+e.getMessage());
-				com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
+			System.out.println("Error downloading file: "+e.getMessage());
+			com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 

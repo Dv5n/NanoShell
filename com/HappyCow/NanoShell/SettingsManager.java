@@ -3,7 +3,7 @@ package com.HappyCow.NanoShell;
 public class SettingsManager
 {
 	// Predefined settings.
-	public static boolean LogDogEnable = true;
+	public static boolean LogDogEnable = false;
 	public static boolean IsDeveloperMode = false;
 
 	// List the setting values.

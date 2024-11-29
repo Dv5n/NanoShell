@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.File;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class LogDog
 {
 	public static final String LogFile = "NanoShell.log";
@@ -15,14 +18,28 @@ public class LogDog
 		{
 			try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogFile, true)))
 			{
-				writer.write(message);
+				writer.write(clock()+" - "+message);
 				writer.newLine();
 			}
 			catch (IOException e)
 			{
 				System.out.println("Error writing to log file: "+e.getMessage());
 				log("Exception in LogDog:\n"+e.toString());
+				if (SettingsManager.IsDeveloperMode)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
+	}
+
+	private static String clock()
+	{
+		LocalDateTime localTime = LocalDateTime.now();
+		final DateTimeFormatter clockFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+		String localClock = localTime.format(clockFormat);
+
+		return localClock;
 	}
 }

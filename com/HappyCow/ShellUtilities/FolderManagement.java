@@ -31,6 +31,10 @@ public class FolderManagement
 		{
 			System.out.println("Error creating file: "+e.getMessage());
 			com.HappyCow.NanoShell.LogDog.log("Exception in FolderManagement:\n"+e.toString());
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -111,6 +115,10 @@ public class FolderManagement
 			{
 				System.out.println("Error reading file: "+e.getMessage());
 				com.HappyCow.NanoShell.LogDog.log("Exception in FolderManagement:\n"+e.toString());
+				if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 		else
