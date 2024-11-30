@@ -28,4 +28,22 @@ public class Clock
 				SimpleClockGraphics[1]+"\n"+
 				SimpleClockGraphics[2]);
 	}
+
+	public void Simple12hrClock()
+	{
+		final DateTimeFormatter clock12hrFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss a");
+
+		String local12hrClock = localTime.format(clock12hrFormat);
+
+		final String Simple12hrClockGraphics[] =
+		{
+			"#=[Clock]================#",
+			"# "+local12hrClock+" #",
+			"#========================#"
+		};
+
+		System.out.println(Simple12hrClockGraphics[0]+"\n"+
+				Simple12hrClockGraphics[1]+"\n"+
+				Simple12hrClockGraphics[2]);
+	}
 }

@@ -173,7 +173,14 @@ public class NanoShell
 				System.out.flush(); // Make sure the screen is cleared.
 				break;
 			case "clock":
-				new Clock().SimpleClock();
+				if (SettingsManager.hr12Format)
+				{
+					new Clock().Simple12hrClock();
+				}
+				else
+				{
+					new Clock().SimpleClock();
+				}
 				break;
 			case "pwd":
 				System.out.println(currentDirectory.getAbsolutePath()); // Displays the full path.
@@ -232,6 +239,7 @@ public class NanoShell
 			default:
 				System.out.println("Unknown command: "+cmd);
 				System.out.println("Type \"help\" for a list of commands.");
+				LogDog.log("Unknown command: "+cmd);
 			}
 		}
 

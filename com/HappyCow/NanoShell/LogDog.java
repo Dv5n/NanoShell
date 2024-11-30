@@ -31,6 +31,11 @@ public class LogDog
 				}
 			}
 		}
+
+		else
+		{
+			System.out.println("Logging not enabled.");
+		}
 	}
 
 	private static String clock()
