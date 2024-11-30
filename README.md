@@ -3,7 +3,7 @@ Simple Java shell, but with many useful features!
 
 <sub>*Coming soon*, art here!</sub>
 
-NanoShell has 22+ commands, including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, `find`, `systeminfo`, and *many* others!
+NanoShell has 25+ commands, including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, `find`, `systeminfo`, `cp`, `mv`, `tree`, and *many* others!
 
 ## Running
 You can compile NanoShell using `make` and then `make run` or running the jar file with `make runJar`.
@@ -38,6 +38,6 @@ If you'd like to contribute to NanoShell, fork the repository, make your changes
 
 *Milestone* 4. More improvments, commands and added logging support.
 
-*Milestone* 5. Added new commands and new TODO file
+*Milestone* 5. Added new commands and new TODO file.
 
-*Milestone* 6. Added many new commands (TODO, priority medium, not done)
+*Milestone* 6. Added many new commands.
