@@ -21,7 +21,7 @@ build: $(CLASS)
 
 %.class: %.java
 	@echo "$(RED)Compiling$(RESET)$(BLUE) $<...$(RESET)"
-	@$(JAVAC) $<
+	@$(JAVAC) -Xdiags:verbose $<
 
 run:
 	$(info Running...)

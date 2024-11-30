@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
+import java.nio.file.StandardCopyOption;
+import java.nio.file.Files;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.List;
@@ -121,6 +124,11 @@ public class MoreUtilities
 						(totalSpace / 1024 / 1024) + " MB");
 	}
 
+	/**
+	* Simple text editor, can only create files
+	*
+	* @param filename The name of the file to edit.
+	*/
 	public static void textEdit(String filename)
 	{
 		Console console = System.console();
@@ -150,6 +158,11 @@ public class MoreUtilities
 		}
 	}
 
+	/**
+	* Helper function to edit(...)
+	*
+	* @param filename The name of the file saved.
+	*/
 	private static void save(String filename)
 	{
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename)))
@@ -165,6 +178,135 @@ public class MoreUtilities
 			{
 				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	* Function to copy files to destination
+	*/
+	public static void cp(String source, String destination)
+	{
+		File src = new File(source);
+		File dest = new File(destination);
+
+		if (!src.exists())
+		{
+			System.out.println("Source file does not exist.");
+			return;
+		}
+
+		if (src.isDirectory())
+		{
+			System.out.println("Cannot copy a directory.");
+			return;
+		}
+
+		try
+		{
+			Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			System.out.println("File copied successfully.");
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error copying file: "+e.getMessage());
+		}
+	}
+
+	/**
+	* Function to move files to destination
+	*/
+	public static void mv(String source, String destination)
+	{
+		File src = new File(source);
+		File dest = new File(destination);
+
+		if (!src.exists())
+		{
+			System.out.println("Source file does not exist.");
+			return;
+		}
+
+		if (src.isDirectory() && !dest.isDirectory())
+		{
+			System.out.println("Cannot copy a directory.");
+			return;
+		}
+
+		if (src.renameTo(dest))
+		{
+			System.out.println("File moved successfully.");
+		}
+		else
+		{
+			System.out.println("Error moving file.");
+		}
+
+	}
+
+	/**
+	* Function to display the directory structure of a directory.
+	*/
+	public static void tree(String path)
+	{
+		treeRecursive(path, 0);
+	}
+	private static void treeRecursive(String path, int level)
+	{
+		File dir = new File(path);
+
+		if (!dir.exists() || !dir.isDirectory())
+		{
+			System.out.println("Invalid directory: "+path);
+			return;
+		}
+
+		String indent = " ".repeat(level * 2);
+
+		for (File file : dir.listFiles())
+		{
+			System.out.println(indent + file.getName());
+
+			if (file.isDirectory())
+			{
+				treeRecursive(file.getAbsolutePath(), level + 1);
+			}
+		}
+	}
+
+	/**
+	* Function to pause execution for the specified amount of time.
+	*/
+	public static void sleep(int seconds)
+	{
+		if (seconds < 0)
+		{
+			System.out.println("Invalid time.");
+			return;
+		}
+
+		try
+		{
+			Thread.sleep(seconds * 1000); // Convert to milliseconds.
+		}
+		catch (InterruptedException e)
+		{
+			System.out.println("Sleep interrupted.");
+		}
+	}
+
+	/**
+	* Function to pause execution until the user types a key.
+	*/
+	public static void pause()
+	{
+		System.out.print("Press any key to continue... ");
+		try
+		{
+			System.in.read();
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error: "+e.getMessage());
 		}
 	}
 }

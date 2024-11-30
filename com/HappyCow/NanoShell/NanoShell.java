@@ -123,8 +123,18 @@ public class NanoShell
 				settingSetHandler(argument);
 			} else if ("edit".equals(command)) {
 				MoreUtilities.textEdit(argument);
+			} else if ("cp".equals(command)) {
+				cpHandler(argument);
+			} else if ("mv".equals(command)) {
+				mvHandler(argument);
+			} else if ("tree".equals(command)) {
+				MoreUtilities.tree(argument);
+			} else if ("sleep".equals(command)) {
+				sleepHandler(argument);
 			}
-		} else {
+		}
+		else
+		{
 			handleMoreCommands(cmd);
 		}
 	}
@@ -160,7 +170,12 @@ public class NanoShell
 					"21. settingSet <setting> <value> - Sets settings to specified values.\n"+
 					"22. settingList - Shows available settings.\n"+
 					"23. prompt <prompt> - Restarts the shell with the specified prompt.\n"+
-					"24. edit <filename> - Simple text editor. (Can only create new files)");
+					"24. edit <filename> - Simple text editor. (Can only create new files)\n"+
+					"25. cp <file> <dest> - Copy specified file to specified folder.\n"+
+					"26. mv <file> <dest> - Move specified file to specified folder.\n"+
+					"27. tree <folder> - Shows the directory structure of the a folder.\n"+
+					"28. sleep <time> - Sleep for the specified amount of time\n"+
+					"29. pause - Pause with \"Press any key to continue...\"");
 				break;
 			case "echo":
 				System.out.println("Use: echo <your text>"); // Default if no text is provided.
@@ -214,6 +229,21 @@ public class NanoShell
 				break;
 			case "find":
 				System.out.println("Use: find <filename>"); // Default if no filename is provided.
+				break;
+			case "cp":
+				System.out.println("Use: cp <filename> <destination>"); // Default if no filename is provided.
+				break;
+			case "mv":
+				System.out.println("Use: mv <filename> <destination"); // Default if no filename is provided.
+				break;
+			case "tree":
+				System.out.println("Use: tree <folder>"); // Default if no folder is provided.
+				break;
+			case "sleep":
+				System.out.println("Use: sleep <time>"); // Default if no time is provided.
+				break;
+			case "pause":
+				MoreUtilities.pause();
 				break;
 			case "edit":
 				System.out.println("Use: edit <filename>"); // Default if no filename is provided.
@@ -269,5 +299,29 @@ public class NanoShell
 			boolean value = Boolean.parseBoolean(settingsParts[1]);
 			SettingsManager.setSetting(settingsParts[0], value);
 		}
+	}
+
+	private void cpHandler(String argument)
+	{
+		String[] settingsParts = argument.split(" ", 2);
+		if (settingsParts.length == 2)
+		{
+			MoreUtilities.cp(settingsParts[0], settingsParts[1]);
+		}
+	}
+
+	private void mvHandler(String argument)
+	{
+		String[] settingsParts = argument.split(" ", 2);
+		if (settingsParts.length == 2)
+		{
+			MoreUtilities.mv(settingsParts[0], settingsParts[1]);
+		}
+	}
+
+	private void sleepHandler(String argument)
+	{
+		int seconds = Integer.parseInt(argument);
+		MoreUtilities.sleep(seconds);
 	}
 }
