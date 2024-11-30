@@ -24,7 +24,7 @@ public class LogDog
 			catch (IOException e)
 			{
 				System.out.println("Error writing to log file: "+e.getMessage());
-				log("Exception in LogDog:\n"+e.toString());
+//				log("Exception in LogDog:\n"+e.toString()); // Could cause infinite loop.
 				if (SettingsManager.IsDeveloperMode)
 				{
 					e.printStackTrace();
