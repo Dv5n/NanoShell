@@ -6,6 +6,11 @@ JAVAC=javac
 MAIN_CLASS=com.HappyCow.NanoShell.NanoShell
 SOURCE=$(wildcard com/HappyCow/**/*.java)
 CLASS=$(SOURCE:.java=.class)
+## Colors
+RED = \033[31m
+GREEN = \033[32m
+BLUE = \033[34m
+RESET = \033[0m
 #===========================================================================================#
 
 .PHONY: build run runJar clean
@@ -15,7 +20,7 @@ build: $(CLASS)
 	@jar cfe NanoShell.jar $(MAIN_CLASS) -C com .
 
 %.class: %.java
-	$(info Compiling $<...)
+	@echo "$(RED)Compiling$(RESET)$(BLUE) $<...$(RESET)"
 	@$(JAVAC) $<
 
 run:

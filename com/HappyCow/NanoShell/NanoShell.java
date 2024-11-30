@@ -70,7 +70,7 @@ public class NanoShell
 				}
 
 				else if (cmd.equals("exit")) {
-					System.out.println("Bye!");
+					System.out.println("Exiting now... Be happy :-)");
 					LogDog.log("Exit...");
 					break;
 				}
