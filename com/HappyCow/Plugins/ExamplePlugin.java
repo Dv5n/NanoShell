@@ -1,5 +1,10 @@
 package com.HappyCow.Plugins;
+
 import com.HappyCow.Plugins.PluginManager.Plugin;
+import com.HappyCow.Plugins.PluginManager.PluginMetadata;
+
+// Plugin metadata for discovery.
+@PluginMetadata(name = "ExamplePlugin", description = "Simple example plugin.", version = "1.0")
 
 /**
 * ExamplePlugin class.
@@ -13,6 +18,6 @@ public class ExamplePlugin implements Plugin
 	public void execute()
 	{
 		System.out.println("Hello, this is a simple plugin!"); // Prints text.
-		// Add more variables or functions.
+		// Add more variables or function.
 	}
 }

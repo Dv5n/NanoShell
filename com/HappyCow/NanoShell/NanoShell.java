@@ -206,6 +206,9 @@ public class NanoShell
 			case "mkdir":
 				System.out.println("Use: mkdir <folder name>"); // Default if no folder is provided.
 				break;
+			case "discover":
+				PluginManager.discover();
+				break;
 			case "rmdir":
 				System.out.println("Use: rmdir <folder name>"); // Default if no folder is provided.
 				break;

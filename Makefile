@@ -3,25 +3,27 @@
 # Simple, but useful!
 #=[Options]=================================================================================#
 JAVAC=javac
+M_PATH=com/HappyCow
 MAIN_CLASS=com.HappyCow.NanoShell.NanoShell
-SOURCE=$(wildcard com/HappyCow/**/*.java)
+SOURCE=$(wildcard $(M_PATH)/**/*.java)
 CLASS=$(SOURCE:.java=.class)
-## Colors
-RED = \033[31m
-GREEN = \033[32m
-BLUE = \033[34m
-RESET = \033[0m
 #===========================================================================================#
 
 .PHONY: build run runJar clean
 
 build: $(CLASS)
 	$(info Building JAR...)
-	@jar cfe NanoShell.jar $(MAIN_CLASS) -C com .
+	@jar cfe NanoShell.jar \
+	$(M_PATH)/NanoShell/NanoShell \
+	$(M_PATH)/NanoShell/*.class \
+	$(M_PATH)/SimpleClock/*.class \
+	$(M_PATH)/ShellUtilities/*.class \
+	$(M_PATH)/Plugins/*.class \
+	$(M_PATH)/Plugins/PluginManager/*.class
 
 %.class: %.java
-	@echo "$(RED)Compiling$(RESET)$(BLUE) $<...$(RESET)"
-	@$(JAVAC) -Xdiags:verbose $<
+	@$(info Compiling $<...)
+	@$(JAVAC) $<
 
 run:
 	$(info Running...)

@@ -5,6 +5,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.HappyCow.Plugins.PluginManager.Plugin;
+import com.HappyCow.Plugins.PluginManager.PluginMetadata;
+
+// Plugin metadata for discovery.
+@PluginMetadata(name = "ClockScreensaver", description = "Simple clock screensaver.", version = "1.0")
 
 /**
 * Clock Screensaver Plugin class.
