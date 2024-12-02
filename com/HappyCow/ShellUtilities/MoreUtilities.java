@@ -291,6 +291,11 @@ public class MoreUtilities
 		catch (InterruptedException e)
 		{
 			System.out.println("Sleep interrupted.");
+			com.HappyCow.NanoShell.LogDog.log("Exception in MoreUtilities:\n"+e.toString());
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -307,6 +312,11 @@ public class MoreUtilities
 		catch (IOException e)
 		{
 			System.out.println("Error: "+e.getMessage());
+			com.HappyCow.NanoShell.LogDog.log("Exception in MoreUtilities:\n"+e.toString());
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 }

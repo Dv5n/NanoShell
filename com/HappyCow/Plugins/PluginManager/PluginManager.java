@@ -109,7 +109,7 @@ public class PluginManager
 						if (pluginClass.isAnnotationPresent(PluginMetadata.class))
 						{
 							PluginMetadata metadata = pluginClass.getAnnotation(PluginMetadata.class);
-							System.out.println("Discovered plugin: "+metadata.name()+" - "+metadata.description());
+							System.out.println("Discovered plugin: "+metadata.name()+" - "+metadata.description()+" ["+metadata.version()+"]");
 						}
 						else
 						{

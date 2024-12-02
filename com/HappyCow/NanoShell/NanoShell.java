@@ -104,33 +104,33 @@ public class NanoShell
 			} else if ("rmdir".equals(command)) {
 				FolderManagement.rmdir(argument); // Remove empty folder.
 			} else if ("rm".equals(command)) {
-				FolderManagement.rm(argument); // Remove file.
+				FolderManagement.rm(argument); // Remove a specified file.
 			} else if ("cat".equals(command)) {
-				FolderManagement.cat(argument); // Displays a file.
+				FolderManagement.cat(argument); // Displays a specified file's text.
 			} else if ("ping".equals(command)) {
-				NetworkUtilities.ping(argument); // Contact a host.
+				NetworkUtilities.ping(argument); // Contact a specified host.
 			} else if ("find".equals(command)) {
-				MoreUtilities.find(argument); // Find a file.
+				MoreUtilities.find(argument); // Find a specified file.
 			} else if ("stat".equals(command)) {
-				MoreUtilities.stat(argument); // Display information about a file.
+				MoreUtilities.stat(argument); // Display information about a specified file.
 			} else if ("wget".equals(command)) {
 				NetworkUtilities.wget(argument); // Download a file from the internet.
 			} else if ("loadplugin".equals(command)) {
-				PluginManager.loadPlugin(argument); // Load a specified plugin.
+				PluginManager.loadPlugin(argument); // Load a specified specified plugin.
 			} else if ("prompt".equals(command)) {
 				runShell(argument); System.exit(0); // Reload the shell with the specified prompt, and make sure to exit.
 			} else if ("settingSet".equals(command)) {
-				settingSetHandler(argument);
+				settingSetHandler(argument); // Set the specified setting to a specified value.
 			} else if ("edit".equals(command)) {
-				MoreUtilities.textEdit(argument);
+				MoreUtilities.textEdit(argument); // Simple text editor. TODO: Allow loading from file, and cursor control.
 			} else if ("cp".equals(command)) {
-				cpHandler(argument);
+				cpHandler(argument); // Copy a file to a specified path with the filename.
 			} else if ("mv".equals(command)) {
-				mvHandler(argument);
+				mvHandler(argument); // Move (or rename) a file to a specified path with the filename.
 			} else if ("tree".equals(command)) {
-				MoreUtilities.tree(argument);
+				MoreUtilities.tree(argument); // Shows the directory structure.
 			} else if ("sleep".equals(command)) {
-				sleepHandler(argument);
+				sleepHandler(argument); // Sleep (stop execution) for the specified amount of time.
 			}
 		}
 		else
@@ -144,6 +144,7 @@ public class NanoShell
 		switch (cmd)
 		{
 			case "help":
+				// Using just one call to "System.out.println(...);" for efficiency.
 				System.out.println(helpPrefix+"\n# NanoShell, version: "+version+"\n"+helpPrefix+
 					"\n(Note: (o) = Optional argument)\n"+
 					"Commands:\n"+
@@ -174,8 +175,9 @@ public class NanoShell
 					"25. cp <file> <dest> - Copy specified file to specified folder.\n"+
 					"26. mv <file> <dest> - Move specified file to specified folder.\n"+
 					"27. tree <folder> - Shows the directory structure of the a folder.\n"+
-					"28. sleep <time> - Sleep for the specified amount of time\n"+
-					"29. pause - Pause with \"Press any key to continue...\"");
+					"28. sleep <time> - Sleep for the specified amount of time.\n"+
+					"29. pause - Pause with \"Press any key to continue...\"\n"+
+					"30. discover - Search for plugins in the default plugin directory.");
 				break;
 			case "echo":
 				System.out.println("Use: echo <your text>"); // Default if no text is provided.
@@ -324,7 +326,19 @@ public class NanoShell
 
 	private void sleepHandler(String argument)
 	{
-		int seconds = Integer.parseInt(argument);
-		MoreUtilities.sleep(seconds);
+		try
+		{
+			int seconds = Integer.parseInt(argument);
+			MoreUtilities.sleep(seconds);
+		}
+		catch (NumberFormatException e)
+		{
+			System.out.println("Error while running sleep: "+e.getMessage());
+			com.HappyCow.NanoShell.LogDog.log("Exception in MoreUtilities:\n"+e.toString());
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 }
