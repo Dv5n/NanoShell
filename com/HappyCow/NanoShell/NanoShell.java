@@ -334,7 +334,7 @@ public class NanoShell
 		catch (NumberFormatException e)
 		{
 			System.out.println("Error while running sleep: "+e.getMessage());
-			com.HappyCow.NanoShell.LogDog.log("Exception in MoreUtilities:\n"+e.toString());
+			com.HappyCow.NanoShell.LogDog.log("Exception in NanoShell (Main):\n"+e.toString());
 			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
 			{
 				e.printStackTrace();
