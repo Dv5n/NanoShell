@@ -3,7 +3,7 @@ Simple Java shell, but with many useful features!
 
 <sub>*Coming soon*, art here!</sub>
 
-NanoShell has 25+ commands, including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, `find`, `systeminfo`, `cp`, `mv`, `tree`, and *many* others!
+NanoShell has 28+ commands, including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, `find`, `systeminfo`, `cp`, `mv`, `tree`, and *many* others!
 
 ## Running
 You can compile NanoShell using `make` and then `make run` or running the jar file with `make runJar`.
@@ -26,20 +26,3 @@ Run plugins using: `pluginload com.HappyCow.Plugins.<YourPluginNameHere!>`.
 
 ## Contribute
 If you'd like to contribute to NanoShell, fork the repository, make your changes, and submit a pull request. If I like the changes, I will merge them into the main branch.
-
-## Timeline
-### NanoShell Progress Timeline
-
-*Milestone* 1. Initial version: Basic shell with minimal features.
-
-*Milestone* 2. Added new features and moved to GitHub repository.
-
-*Milestone* 3. Added new commands and plugin support.
-
-*Milestone* 4. More improvments, commands and added logging support.
-
-*Milestone* 5. Added new commands and new TODO file.
-
-*Milestone* 6. Added many new commands.
-
-*Milestone* 7. Optimizations, one new command, improved PluginManager.
