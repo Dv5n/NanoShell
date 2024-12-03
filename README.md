@@ -13,7 +13,7 @@ If you run into any errors while compiling or running the shell, let me know! Ju
 ## Plugins
 Plugins are apps, features or even games to NanoShell.
 
-**Important** NOTE: Plugins are experimental and might have bugs.
+**Important** NOTE: Plugins are experimental and might have bugs. I'd love to hear your feedback!
 
 Plugins are located in: `com/HappyCow/Plugins`.
 
@@ -25,4 +25,4 @@ Run plugins using: `pluginload com.HappyCow.Plugins.<YourPluginNameHere!>`.
 > Make sure to use just the name of the class file (e.g. `pluginload com.HappyCow.Plugins.ExamplePlugin`.
 
 ## Contribute
-If you'd like to contribute to NanoShell, fork the repository, make your changes, and submit a pull request. If I like the changes, I will merge them into the main branch.
+If you'd like to contribute to NanoShell, fork the repository, make your changes, and submit a pull request. If I like the changes, I will merge them into the main (dev) branch.
