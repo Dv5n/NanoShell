@@ -65,11 +65,13 @@ public class NanoShell
 				System.out.print(promptColor+prompt+": "+"\033[0m");
 				final String cmd = cmdScanner.nextLine().trim();
 
-				if (cmd.isEmpty()) {
+				if (cmd.isEmpty())
+				{
 					continue;
 				}
 
-				else if (cmd.equals("exit")) {
+				else if (cmd.equals("exit"))
+				{
 					System.out.println("Exiting now... Be happy :-)");
 					LogDog.log("Exit...");
 					break;
@@ -91,45 +93,83 @@ public class NanoShell
 			String command = cmdParts[0].trim();
 			String argument = cmdParts[1].trim();
 
-			if ("echo".equals(command)) {
+			if ("echo".equals(command))
+			{
 				System.out.println(argument); // Displays the specified text.
-			} else if ("cd".equals(command)) {
+			}
+			else if ("cd".equals(command))
+			{
 				changeDir(argument); // Change directory.
-			} else if ("ls".equals(command)) {
+			}
+			else if ("ls".equals(command))
+			{
 				FolderManagement.list(argument); // Lists contents from the specified path.
-			} else if ("touch".equals(command)) {
+			}
+			else if ("touch".equals(command))
+			{
 				FolderManagement.touch(argument); // Create empty file.
-			} else if ("mkdir".equals(command)) {
+			}
+			else if ("mkdir".equals(command))
+			{
 				FolderManagement.mkdir(argument); // Create empty folder.
-			} else if ("rmdir".equals(command)) {
+			}
+			else if ("rmdir".equals(command))
+			{
 				FolderManagement.rmdir(argument); // Remove empty folder.
-			} else if ("rm".equals(command)) {
+			}
+			else if ("rm".equals(command))
+			{
 				FolderManagement.rm(argument); // Remove a specified file.
-			} else if ("cat".equals(command)) {
+			}
+			else if ("cat".equals(command))
+			{
 				FolderManagement.cat(argument); // Displays a specified file's text.
-			} else if ("ping".equals(command)) {
+			}
+			else if ("ping".equals(command))
+			{
 				NetworkUtilities.ping(argument); // Contact a specified host.
-			} else if ("find".equals(command)) {
+			}
+			else if ("find".equals(command))
+			{
 				MoreUtilities.find(argument); // Find a specified file.
-			} else if ("stat".equals(command)) {
+			}
+			else if ("stat".equals(command))
+			{
 				MoreUtilities.stat(argument); // Display information about a specified file.
-			} else if ("wget".equals(command)) {
+			}
+			else if ("wget".equals(command))
+			{
 				NetworkUtilities.wget(argument); // Download a file from the internet.
-			} else if ("loadplugin".equals(command)) {
+			}
+			else if ("loadplugin".equals(command))
+			{
 				PluginManager.loadPlugin(argument); // Load a specified specified plugin.
-			} else if ("prompt".equals(command)) {
+			}
+			else if ("prompt".equals(command))
+			{
 				runShell(argument); System.exit(0); // Reload the shell with the specified prompt, and make sure to exit.
-			} else if ("settingSet".equals(command)) {
+			}
+			else if ("settingSet".equals(command))
+			{
 				settingSetHandler(argument); // Set the specified setting to a specified value.
-			} else if ("edit".equals(command)) {
+			}
+			else if ("edit".equals(command))
+			{
 				MoreUtilities.textEdit(argument); // Simple text editor. TODO: Allow loading from file, and cursor control.
-			} else if ("cp".equals(command)) {
+			}
+			else if ("cp".equals(command))
+			{
 				cpHandler(argument); // Copy a file to a specified path with the filename.
-			} else if ("mv".equals(command)) {
+			}
+			else if ("mv".equals(command))
+			{
 				mvHandler(argument); // Move (or rename) a file to a specified path with the filename.
-			} else if ("tree".equals(command)) {
+			}
+			else if ("tree".equals(command))
+			{
 				MoreUtilities.tree(argument); // Shows the directory structure.
-			} else if ("sleep".equals(command)) {
+			} else if ("sleep".equals(command))
+			{
 				sleepHandler(argument); // Sleep (stop execution) for the specified amount of time.
 			}
 		}
