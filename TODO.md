@@ -5,7 +5,6 @@
 
 ### Priority: Medium
 1. Add more exception handling.
-2. Add a feature to list available plugins.
 
 ### Priority: Low
 1. Add a calculator (maybe plugin)
