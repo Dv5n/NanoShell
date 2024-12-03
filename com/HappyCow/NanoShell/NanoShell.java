@@ -93,85 +93,72 @@ public class NanoShell
 			String command = cmdParts[0].trim();
 			String argument = cmdParts[1].trim();
 
-			if ("echo".equals(command))
+			switch (command)
 			{
-				System.out.println(argument); // Displays the specified text.
-			}
-			else if ("cd".equals(command))
-			{
-				changeDir(argument); // Change directory.
-			}
-			else if ("ls".equals(command))
-			{
-				FolderManagement.list(argument); // Lists contents from the specified path.
-			}
-			else if ("touch".equals(command))
-			{
-				FolderManagement.touch(argument); // Create empty file.
-			}
-			else if ("mkdir".equals(command))
-			{
-				FolderManagement.mkdir(argument); // Create empty folder.
-			}
-			else if ("rmdir".equals(command))
-			{
-				FolderManagement.rmdir(argument); // Remove empty folder.
-			}
-			else if ("rm".equals(command))
-			{
-				FolderManagement.rm(argument); // Remove a specified file.
-			}
-			else if ("cat".equals(command))
-			{
-				FolderManagement.cat(argument); // Displays a specified file's text.
-			}
-			else if ("ping".equals(command))
-			{
-				NetworkUtilities.ping(argument); // Contact a specified host.
-			}
-			else if ("find".equals(command))
-			{
-				MoreUtilities.find(argument); // Find a specified file.
-			}
-			else if ("stat".equals(command))
-			{
-				MoreUtilities.stat(argument); // Display information about a specified file.
-			}
-			else if ("wget".equals(command))
-			{
-				NetworkUtilities.wget(argument); // Download a file from the internet.
-			}
-			else if ("loadplugin".equals(command))
-			{
-				PluginManager.loadPlugin(argument); // Load a specified specified plugin.
-			}
-			else if ("prompt".equals(command))
-			{
-				runShell(argument); System.exit(0); // Reload the shell with the specified prompt, and make sure to exit.
-			}
-			else if ("settingSet".equals(command))
-			{
-				settingSetHandler(argument); // Set the specified setting to a specified value.
-			}
-			else if ("edit".equals(command))
-			{
-				MoreUtilities.textEdit(argument); // Simple text editor. TODO: Allow loading from file, and cursor control.
-			}
-			else if ("cp".equals(command))
-			{
-				cp_mvHandler(argument, "cp"); // Copy a file to a specified path with the filename.
-			}
-			else if ("mv".equals(command))
-			{
-				cp_mvHandler(argument, "mv"); // Move (or rename) a file to a specified path with the filename.
-			}
-			else if ("tree".equals(command))
-			{
-				MoreUtilities.tree(argument); // Shows the directory structure.
-			}
-			else if ("sleep".equals(command))
-			{
-				sleepHandler(argument); // Sleep (stop execution) for the specified amount of time.
+				case "echo":
+					System.out.println(argument); // Displays the specified text.
+					break;
+				case "cd":
+					changeDir(argument); // Change directory.
+					break;
+				case "ls":
+					FolderManagement.list(argument); // Lists contents from the specified path.
+					break;
+				case "touch":
+					FolderManagement.touch(argument); // Create empty file.
+					break;
+				case "mkdir":
+					FolderManagement.mkdir(argument); // Create empty folder.
+					break;
+				case "rmdir":
+					FolderManagement.rmdir(argument); // Remove empty folder.
+					break;
+				case "rm":
+					FolderManagement.rm(argument); // Remove a specified file.
+					break;
+				case "cat":
+					FolderManagement.cat(argument); // Displays a specified file's text.
+					break;
+				case "ping":
+					NetworkUtilities.ping(argument); // Contact a specified host.
+					break;
+				case "find":
+					MoreUtilities.find(argument); // Find a specified file.
+					break;
+				case "stat":
+					MoreUtilities.stat(argument); // Display information about a specified file.
+					break;
+				case "wget":
+					NetworkUtilities.wget(argument); // Download a file from the internet.
+					break;
+				case "loadplugin":
+					PluginManager.loadPlugin(argument); // Load a specified specified plugin.
+					break;
+				case "prompt":
+					runShell(argument); System.exit(0); // Reload the shell with the specified prompt, and make sure to exit.
+					break;
+				case "settingSet":
+					settingSetHandler(argument); // Set the specified setting to a specified value.
+					break;
+				case "edit":
+					MoreUtilities.textEdit(argument); // Simple text editor. TODO: Allow loading from file, and cursor control.
+					break;
+				case "cp":
+					cp_mvHandler(argument, "cp"); // Copy a file to a specified path with the filename.
+					break;
+				case "mv":
+					cp_mvHandler(argument, "mv"); // Move (or rename) a file to a specified path with the filename.
+					break;
+				case "tree":
+					MoreUtilities.tree(argument); // Shows the directory structure.
+					break;
+				case "sleep":
+					sleepHandler(argument); // Sleep (stop execution) for the specified amount of time.
+					break;
+				default:
+					System.out.println("Unknown command: "+cmd);
+					System.out.println("Type \"help\" for a list of commands.");
+					LogDog.log("Unknown command: "+cmd);
 			}
 		}
 		else
