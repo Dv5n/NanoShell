@@ -159,16 +159,17 @@ public class NanoShell
 			}
 			else if ("cp".equals(command))
 			{
-				cpHandler(argument); // Copy a file to a specified path with the filename.
+				cp_mvHandler(argument, "cp"); // Copy a file to a specified path with the filename.
 			}
 			else if ("mv".equals(command))
 			{
-				mvHandler(argument); // Move (or rename) a file to a specified path with the filename.
+				cp_mvHandler(argument, "mv"); // Move (or rename) a file to a specified path with the filename.
 			}
 			else if ("tree".equals(command))
 			{
 				MoreUtilities.tree(argument); // Shows the directory structure.
-			} else if ("sleep".equals(command))
+			}
+			else if ("sleep".equals(command))
 			{
 				sleepHandler(argument); // Sleep (stop execution) for the specified amount of time.
 			}
@@ -346,21 +347,19 @@ public class NanoShell
 		}
 	}
 
-	private void cpHandler(String argument)
+	private void cp_mvHandler(String argument, String action)
 	{
 		String[] settingsParts = argument.split(" ", 2);
 		if (settingsParts.length == 2)
 		{
-			MoreUtilities.cp(settingsParts[0], settingsParts[1]);
-		}
-	}
-
-	private void mvHandler(String argument)
-	{
-		String[] settingsParts = argument.split(" ", 2);
-		if (settingsParts.length == 2)
-		{
-			MoreUtilities.mv(settingsParts[0], settingsParts[1]);
+			if (action == "cp")
+			{
+				MoreUtilities.cp(settingsParts[0], settingsParts[1]);
+			}
+			else if (action == "mv")
+			{
+				MoreUtilities.mv(settingsParts[0], settingsParts[1]);
+			}
 		}
 	}
 
