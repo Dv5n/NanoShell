@@ -87,6 +87,21 @@ public class NanoShell
 	private void executeCommand(String cmd)
 	{
 		MoreUtilities.addCommandToHistory(cmd);
+
+		if (cmd.contains("&&"))
+		{
+			String[] commands = cmd.split("&&");
+			for (String singleCommand : commands)
+			{
+				singleCommand = singleCommand.trim();
+				if(!singleCommand.isEmpty())
+				{
+					executeCommand(singleCommand);
+				}
+			}
+			return;
+		}
+
 		if (cmd.contains(" "))
 		{
 			String[] cmdParts = cmd.split(" ", 2);
