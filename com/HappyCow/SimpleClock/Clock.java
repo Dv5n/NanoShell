@@ -46,4 +46,9 @@ public class Clock
 				Simple12hrClockGraphics[1]+"\n"+
 				Simple12hrClockGraphics[2]);
 	}
+
+	public static String clock()
+	{
+		return new Clock().localClock;
+	}
 }

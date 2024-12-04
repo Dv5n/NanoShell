@@ -18,7 +18,7 @@ public class LogDog
 		{
 			try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogFile, true)))
 			{
-				writer.write(clock()+" - "+message);
+				writer.write(com.HappyCow.SimpleClock.Clock.clock()+" - "+message);
 				writer.newLine();
 			}
 			catch (IOException e)
@@ -36,15 +36,5 @@ public class LogDog
 		{
 			System.out.println("Logging not enabled.");
 		}
-	}
-
-	private static String clock()
-	{
-		LocalDateTime localTime = LocalDateTime.now();
-		final DateTimeFormatter clockFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-
-		String localClock = localTime.format(clockFormat);
-
-		return localClock;
 	}
 }
