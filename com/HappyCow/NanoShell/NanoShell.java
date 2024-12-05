@@ -94,7 +94,7 @@ public class NanoShell
 			for (String singleCommand : commands)
 			{
 				singleCommand = singleCommand.trim();
-				if(!singleCommand.isEmpty())
+				if (!singleCommand.isEmpty())
 				{
 					executeCommand(singleCommand);
 				}
@@ -219,7 +219,7 @@ public class NanoShell
 					"26. mv <file> <dest> - Move specified file to specified folder.\n"+
 					"27. tree <folder> - Shows the directory structure of the a folder.\n"+
 					"28. sleep <time> - Sleep for the specified amount of time.\n"+
-					"29. pause - Pause with \"Press any key to continue...\"\n"+
+					"29. pause - Pause execution with \"Press any key to continue...\"\n"+
 					"30. discover - Search for plugins in the default plugin directory.");
 				break;
 			case "echo":

@@ -19,6 +19,6 @@ I will try my best to make plugins as simple to create and modify as possible!
 If you encounter any errors, exceptions or questions, open an issue,
 and I will try to help you!
 
-You can create issues even for requesting commands or improvments,
-I will add the command or improvment to the TODO file.
+You can create issues even for requesting commands or improvements,
+I will add the command or improvement to the TODO file.
 

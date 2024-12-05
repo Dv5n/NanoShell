@@ -15,7 +15,8 @@ import java.net.URLClassLoader;
 */
 public class PluginManager
 {
-//	public static final String API_VER = "0.2";
+	public static final String INCOMPATIBLE_API_VERSIONS = "0.0";
+	public static final String API_VERSION = "0.2";
 	private static final ExecutorService pluginExecutor = Executors.newCachedThreadPool();
 
 	public static void loadPlugin(String pluginName)
@@ -74,7 +75,7 @@ public class PluginManager
 	{
 		try
 		{
-			String path = "com/HappyCow/Plugins";
+			final String path = "com/HappyCow/Plugins";
 
 			File pluginDir = new File(path);
 
