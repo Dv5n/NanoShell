@@ -5,8 +5,8 @@ Simple Java shell, but with many useful features!
 
 NanoShell has 28+ commands, including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, `find`, `systeminfo`, `cp`, `mv`, `tree`, and *many* others!
 
-NEW: Running multiple commands with `&&`.
-Example use: `clear && ls`
+NanoShell also supports running multiple commands with `&&`.
+Example use: `clear && ls && echo example`
 
 ## Running
 You can compile NanoShell using `make` and then `make run` or running the jar file with `make runJar`.
@@ -29,3 +29,8 @@ Run plugins using: `pluginload com.HappyCow.Plugins.<YourPluginNameHere!>`.
 
 ## Contribute
 If you'd like to contribute to NanoShell, fork the repository, make your changes, and submit a pull request. If I like the changes, I will merge them into the main (dev) branch.
+
+## Additional Notes
+**WARNING:** NanoShell is almost complete, and as a result, future commits may be delayed, or the project might even be discontinued. However, with your support, I can keep this project alive for years to come.
+
+There is some work not done yet, some new features that are a bit hard to do, I will try my best to make these.
