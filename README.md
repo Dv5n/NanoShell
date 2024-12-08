@@ -1,8 +1,7 @@
 # NanoShell
+![1000103669](https://github.com/user-attachments/assets/6dea937f-714b-4e24-935e-107b597cbc3c)
+
 Simple Java shell, but with many useful features!
-
-![1000103633](https://github.com/user-attachments/assets/fdb65578-e522-48c1-bbf4-2d830d1baf78)
-
 
 NanoShell has 28+ commands, including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, `find`, `systeminfo`, `cp`, `mv`, `tree`, and *many* others!
 
