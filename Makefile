@@ -23,7 +23,7 @@ build: $(CLASS)
 
 %.class: %.java
 	@$(info Compiling $<...)
-	@$(JAVAC) $<
+	@$(JAVAC) -Xdiags:verbose $<
 
 run:
 	$(info Running...)

@@ -10,6 +10,8 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.Files;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Scanner;
 import java.util.List;
 
@@ -157,7 +159,6 @@ public class MoreUtilities
 			textBuffer.append(line).append("\n");
 		}
 	}
-
 	/**
 	* Helper function to edit(...)
 	*
@@ -317,6 +318,65 @@ public class MoreUtilities
 			{
 				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	* Simple calculator.
+	* TODO: Fix "FormatNumberException" when using multiple operators.
+	*/
+	public static String calc(String expression)
+	{
+		expression = expression.replaceAll(" ", "");
+
+		if (!expression.matches("[0-9\\+\\-\\*/\\.]+"))
+		{
+			return "Error: invalid input";
+		}
+
+		expression = calcHelper(expression, "*", "/");
+		return calcHelper(expression, "+", "-");
+	}
+	private static String calcHelper(String expression, String op1, String op2)
+	{
+		try
+		{
+			String regex = "(\\d+(\\.\\d+)?)(["+op1+op2+"])(\\d+(\\.\\d+)?)";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(expression);
+
+			while (matcher.find())
+			{
+				double left = Double.parseDouble(matcher.group(1));
+				double right = Double.parseDouble(matcher.group(4));
+				double result = calcHelper2(left, right, matcher.group(3));
+
+				expression = expression.replace(matcher.group(0), String.valueOf(result));
+				matcher = pattern.matcher(expression);
+			}
+
+			if (expression.contains(".0"))
+			{
+				return String.format("%.0f", Double.parseDouble(expression));
+			}
+			return expression;
+		}
+		catch (NumberFormatException e)
+		{
+			System.out.println("Error: "+e.getMessage());
+			System.out.println("This is a known bug, and will be fixed!");
+			return "0";
+		}
+	}
+	private static double calcHelper2(double left, double right, String operator)
+	{
+		switch (operator)
+		{
+		case "*": return left * right;
+		case "/": return left / right;
+		case "+": return left + right;
+		case "-": return left - right;
+		default: throw new IllegalArgumentException("Invalid operator: "+operator);
 		}
 	}
 }

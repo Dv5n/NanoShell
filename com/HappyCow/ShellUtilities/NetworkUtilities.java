@@ -1,7 +1,9 @@
 package com.HappyCow.ShellUtilities;
 
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.UnknownHostException;
+import java.net.SocketException;
 import java.net.URLConnection;
 import java.net.URL;
 
@@ -9,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileOutputStream;
+
+import java.util.Enumeration;
 
 import com.HappyCow.NanoShell.NanoShell;
 
@@ -85,5 +89,61 @@ public class NetworkUtilities
 			filename = "unknown_name";
 		}
 		return filename;
+	}
+
+	public static void netstat()
+	{
+		try
+		{
+			Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+			while (networkInterfaces.hasMoreElements())
+			{
+				NetworkInterface networkInterface = networkInterfaces.nextElement();
+				if (!networkInterface.isUp() || networkInterface.isLoopback()) continue;
+
+				System.out.println("Interface: "+networkInterface.getDisplayName());
+
+				Enumeration<InetAddress> inetAddresses = networkInterface.getInetAddresses();
+				while (inetAddresses.hasMoreElements())
+				{
+					InetAddress inetAddress = inetAddresses.nextElement();
+					System.out.println("\tAddress: "+inetAddress.getHostAddress());
+				}
+
+				System.out.println("\tMac Address: "+getMacAddress(networkInterface));
+				System.out.println("\tMTU: "+networkInterface.getMTU());
+				System.out.println("-----------------------------------");
+			}
+		}
+		catch (SocketException e)
+		{
+			System.out.println("Error while running netstat: "+e.getMessage());
+			com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static String getMacAddress(NetworkInterface networkInterface)
+	{
+		try
+		{
+			byte[] macAddressBytes = networkInterface.getHardwareAddress();
+			if (macAddressBytes == null) return "N/A";
+
+			StringBuilder macAddress = new StringBuilder();
+			for (int i = 0; i < macAddressBytes.length; i++)
+			{
+				macAddress.append(String.format("%02X", macAddressBytes[i]));
+				if (i < macAddressBytes.length -1) macAddress.append(":");
+			}
+			return macAddress.toString();
+		}
+		catch (SocketException e)
+		{
+			return e.getMessage();
+		}
 	}
 }

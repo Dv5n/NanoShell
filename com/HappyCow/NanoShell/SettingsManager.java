@@ -2,7 +2,7 @@ package com.HappyCow.NanoShell;
 
 public class SettingsManager
 {
-	// Predefined settings.
+	// Predefined settings (boolean)
 	public static boolean LogDogEnable = true;
 	public static boolean IsDeveloperMode = false;
 	public static boolean hr12Format = true;
@@ -37,4 +37,11 @@ public class SettingsManager
 				break;
 		}
 	}
+
+/* For future...
+	// Because it is related to SettingsManager.
+	class UserManagement
+	{
+		...
+*/
 }

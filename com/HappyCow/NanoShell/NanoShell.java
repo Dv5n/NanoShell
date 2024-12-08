@@ -23,7 +23,7 @@ import java.io.File; // Import for files and directories management.
 
 // Local imports.
 import com.HappyCow.SimpleClock.Clock; // For the clock command.
-import com.HappyCow.ShellUtilities.FolderManagement; // For shell utilities (e.g. mkdir, rmdir, touch, cat etc.)
+import com.HappyCow.ShellUtilities.FolderManagement; // For shell utilities (e.g. mkdir, rmdir, touch, cat)
 import com.HappyCow.ShellUtilities.NetworkUtilities; // For the ping and wget command.
 import com.HappyCow.ShellUtilities.MoreUtilities; // For more shell utilities (e.g. find, stat, edit)
 import com.HappyCow.Plugins.PluginManager.PluginManager; // For loading plugins.
@@ -47,8 +47,8 @@ public class NanoShell
 
 	public static void main(String[] args)
 	{
-		new File(LogDog.LogFile).delete();
-		LogDog.log("NanoShell | LogDog");
+		new File(LogDog.LogFile).delete(); // Delete the log file, if it exists.
+		LogDog.log("NanoShell | LogDog"); // Start of the log file.
 		new NanoShell().runShell("HappyCow"); // Run the shell with the specified prompt.
 	}
 
@@ -58,27 +58,27 @@ public class NanoShell
 	public void runShell(String prompt)
 	{
 		System.out.println(welcomeText);
-		try(final Scanner cmdScanner = new Scanner(System.in))
+		final Scanner cmdScanner = new Scanner(System.in);
+
+		while (true)
 		{
-			while (true)
+			System.out.print(promptColor+prompt+": "+"\033[0m");
+			final String cmd = cmdScanner.nextLine().trim();
+
+			if (cmd.isEmpty())
 			{
-				System.out.print(promptColor+prompt+": "+"\033[0m");
-				final String cmd = cmdScanner.nextLine().trim();
-
-				if (cmd.isEmpty())
-				{
-					continue;
-				}
-
-				else if (cmd.equals("exit"))
-				{
-					System.out.println("Exiting now... Be happy :-)");
-					LogDog.log("Exit...");
-					break;
-				}
-				executeCommand(cmd);
+				continue;
 			}
+
+			else if (cmd.equals("exit"))
+			{
+				System.out.println("Exiting now... Be happy :-)");
+				LogDog.log("Exit...");
+				break;
+			}
+			executeCommand(cmd);
 		}
+		cmdScanner.close();
 	}
 
 	/**
@@ -170,6 +170,9 @@ public class NanoShell
 				case "sleep":
 					sleepHandler(argument); // Sleep (stop execution) for the specified amount of time.
 					break;
+				case "calc":
+					System.out.println(MoreUtilities.calc(argument));
+					break;
 				default:
 					System.out.println("Unknown command: "+cmd);
 					System.out.println("Type \"help\" for a list of commands.");
@@ -220,10 +223,12 @@ public class NanoShell
 					"27. tree <folder> - Shows the directory structure of the a folder.\n"+
 					"28. sleep <time> - Sleep for the specified amount of time.\n"+
 					"29. pause - Pause execution with \"Press any key to continue...\"\n"+
-					"30. discover - Search for plugins in the default plugin directory.");
+					"30. discover - Search for plugins in the default plugin directory.\n"+
+					"31. netstat - Display information about network trafic.\n"+
+					"32. calc <math> - Simple calculator (usage: calc <math(e.g. 5+3*9)>)");
 				break;
 			case "echo":
-				System.out.println("Use: echo <your text>"); // Default if no text is provided.
+				System.out.println("Use: echo <text>"); // Default if no text is provided.
 				break;
 			case "cd":
 				System.out.println("Use: cd <path>"); // Default if no path is provided.
@@ -272,11 +277,17 @@ public class NanoShell
 			case "settingList":
 				SettingsManager.getSetting();
 				break;
+			case "netstat":
+				NetworkUtilities.netstat();
+				break;
 			case "settingSet":
 				System.out.println("Use: settingSet <setting> <value>"); // Default if no setting or value is provided.
 				break;
 			case "find":
 				System.out.println("Use: find <filename>"); // Default if no filename is provided.
+				break;
+			case "calc":
+				System.out.println("Use: calc <math>");
 				break;
 			case "cp":
 				System.out.println("Use: cp <filename> <destination>"); // Default if no filename is provided.
