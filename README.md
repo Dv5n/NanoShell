@@ -33,4 +33,4 @@ If you'd like to contribute to NanoShell, fork the repository, make your changes
 ## Additional Notes
 **WARNING:** NanoShell is almost complete, and as a result, future commits may be delayed, or the project might even be discontinued. However, with your support, I can keep this project alive for years to come.
 
-There is some work not done yet, some new features that are a bit hard to do, I will try my best to make these.
+Considering a possible transition of NanoShell to C.
