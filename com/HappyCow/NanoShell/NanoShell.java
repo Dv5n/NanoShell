@@ -57,7 +57,14 @@ public class NanoShell
 	*/
 	public void runShell(String prompt)
 	{
-		System.out.println(welcomeText);
+		if (SettingsManager.CustomWelcomeMessage)
+		{
+			System.out.println(/*customWelcome*/"Coming soon!");
+		}
+		else
+		{
+			System.out.println(welcomeText);
+		}
 		final Scanner cmdScanner = new Scanner(System.in);
 
 		while (true)

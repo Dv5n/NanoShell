@@ -6,13 +6,15 @@ public class SettingsManager
 	public static boolean LogDogEnable = true;
 	public static boolean IsDeveloperMode = false;
 	public static boolean hr12Format = true;
+	public static boolean CustomWelcomeMessage = false;
 
 	// List the setting values.
 	public static void getSetting()
 	{
 		System.out.println("LogDogEnable = "+LogDogEnable+
 					"\nIsDeveloperMode = "+IsDeveloperMode+
-					"\n12hrFormat = "+hr12Format);
+					"\n12hrFormat = "+hr12Format+
+					"\nCustomWelcomeMessage = "+CustomWelcomeMessage);
 	}
 
 	// Set the specified setting value.
@@ -32,16 +34,14 @@ public class SettingsManager
 				hr12Format = value;
 				LogDog.log("12hrFormat set to: "+value);
 				break;
+			case "CustomWelcomeMessage":
+				CustomWelcomeMessage = value;
+				LogDog.log("CustomWelcomeMessage set to: "+value);
+				break;
 			default:
 				System.out.println("Setting not found: "+Setting);
 				break;
 		}
 	}
 
-/* For future...
-	// Because it is related to SettingsManager.
-	class UserManagement
-	{
-		...
-*/
 }
