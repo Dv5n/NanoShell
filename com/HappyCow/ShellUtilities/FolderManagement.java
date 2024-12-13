@@ -22,19 +22,13 @@ public class FolderManagement
 		File file = new File(NanoShell.getCurrentDir(), filename);
 		try
 		{
-			if (!file.createNewFile())
-			{
-				System.out.println("File already exists.");
-			}
+			if (!file.createNewFile()) System.out.println("File already exists.");
 		}
 		catch (IOException e)
 		{
 			System.out.println("Error creating file: "+e.getMessage());
 			com.HappyCow.NanoShell.LogDog.log("Exception in FolderManagement:\n"+e.toString());
-			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-			{
-				e.printStackTrace();
-			}
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 		}
 	}
 
@@ -46,17 +40,9 @@ public class FolderManagement
 	public static void rm(String filename)
 	{
 		File file = new File(NanoShell.getCurrentDir(), filename);
-		if (file.exists() && file.isFile())
-		{
-			if (!file.delete())
-			{
-				System.out.println("Failed to delete file.");
-			}
-		}
-		else
-		{
-			System.out.println("File not found: "+filename);
-		}
+		if (file.exists() && file.isFile()) if (!file.delete()) System.out.println("Failed to delete file.");
+
+		else System.out.println("File not found: "+filename);
 	}
 
 	/**
@@ -67,10 +53,7 @@ public class FolderManagement
 	public static void mkdir(String dirname)
 	{
 		File dir = new File(NanoShell.getCurrentDir(), dirname);
-		if (!dir.mkdir())
-		{
-			System.out.println("Failed to create directory or it already exists.");
-		}
+		if (!dir.mkdir()) System.out.println("Failed to create directory or it already exists.");
 	}
 
 	/**
@@ -81,17 +64,9 @@ public class FolderManagement
 	public static void rmdir(String dirname)
 	{
 		File dir = new File(NanoShell.getCurrentDir(), dirname);
-		if (dir.exists() && dir.isDirectory())
-		{
-			if (!dir.delete())
-			{
-				System.out.println("Failed to delete directory. Make sure it is empty.");
-			}
-		}
-		else
-		{
-			System.out.println("Directory not found:"+dirname);
-		}
+		if (dir.exists() && dir.isDirectory()) if (!dir.delete()) System.out.println("Failed to delete directory. Make sure it is empty.");
+
+		else System.out.println("Directory not found:"+dirname);
 	}
 
 	/**
@@ -115,16 +90,10 @@ public class FolderManagement
 			{
 				System.out.println("Error reading file: "+e.getMessage());
 				com.HappyCow.NanoShell.LogDog.log("Exception in FolderManagement:\n"+e.toString());
-				if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-				{
-					e.printStackTrace();
-				}
+				if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 			}
 		}
-		else
-		{
-			System.out.println("File not found: "+filename);
-		}
+		else System.out.println("File not found: "+filename);
 	}
 
 	/**
@@ -151,9 +120,6 @@ public class FolderManagement
 				System.out.println((file.isDirectory() ? "[dir ]: " : "[file]: ") + file.getName());
 			}
 		}
-		else
-		{
-			System.out.println("No files or directories found.");
-		}
+		else System.out.println("No files or directories found.");
 	}
 }

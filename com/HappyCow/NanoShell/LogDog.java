@@ -24,16 +24,10 @@ public class LogDog
 			catch (IOException e)
 			{
 				System.out.println("Error writing to log file: "+e.getMessage());
-				if (SettingsManager.IsDeveloperMode)
-				{
-					e.printStackTrace();
-				}
+				if (SettingsManager.IsDeveloperMode) e.printStackTrace();
 			}
 		}
 
-		else
-		{
-			System.out.println("Logging not enabled.");
-		}
+		else System.out.println("Logging not enabled.");
 	}
 }

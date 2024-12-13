@@ -57,14 +57,7 @@ public class NanoShell
 	*/
 	public void runShell(String prompt)
 	{
-		if (SettingsManager.CustomWelcomeMessage)
-		{
-			System.out.println(/*customWelcome*/"Coming soon!");
-		}
-		else
-		{
-			System.out.println(welcomeText);
-		}
+		System.out.println(welcomeText);
 		final Scanner cmdScanner = new Scanner(System.in);
 
 		while (true)
@@ -72,10 +65,7 @@ public class NanoShell
 			System.out.print(promptColor+prompt+": "+"\033[0m");
 			final String cmd = cmdScanner.nextLine().trim();
 
-			if (cmd.isEmpty())
-			{
-				continue;
-			}
+			if (cmd.isEmpty()) continue;
 
 			else if (cmd.equals("exit"))
 			{
@@ -101,10 +91,7 @@ public class NanoShell
 			for (String singleCommand : commands)
 			{
 				singleCommand = singleCommand.trim();
-				if (!singleCommand.isEmpty())
-				{
-					executeCommand(singleCommand);
-				}
+				if (!singleCommand.isEmpty()) executeCommand(singleCommand);
 			}
 			return;
 		}
@@ -117,68 +104,47 @@ public class NanoShell
 
 			switch (command)
 			{
-				case "echo":
-					System.out.println(argument); // Displays the specified text.
+				case "echo": System.out.println(argument); // Displays the specified text.
 					break;
-				case "cd":
-					changeDir(argument); // Change directory.
+				case "cd": changeDir(argument); // Change directory.
 					break;
-				case "ls":
-					FolderManagement.list(argument); // Lists contents from the specified path.
+				case "ls": FolderManagement.list(argument); // Lists contents from the specified path.
 					break;
-				case "touch":
-					FolderManagement.touch(argument); // Create empty file.
+				case "touch": FolderManagement.touch(argument); // Create empty file.
 					break;
-				case "mkdir":
-					FolderManagement.mkdir(argument); // Create empty folder.
+				case "mkdir": FolderManagement.mkdir(argument); // Create empty folder.
 					break;
-				case "rmdir":
-					FolderManagement.rmdir(argument); // Remove empty folder.
+				case "rmdir": FolderManagement.rmdir(argument); // Remove empty folder.
 					break;
-				case "rm":
-					FolderManagement.rm(argument); // Remove a specified file.
+				case "rm": FolderManagement.rm(argument); // Remove a specified file.
 					break;
-				case "cat":
-					FolderManagement.cat(argument); // Displays a specified file's text.
+				case "cat": FolderManagement.cat(argument); // Displays a specified file's text.
 					break;
-				case "ping":
-					NetworkUtilities.ping(argument); // Contact a specified host.
+				case "ping": NetworkUtilities.ping(argument); // Contact a specified host.
 					break;
-				case "find":
-					MoreUtilities.find(argument); // Find a specified file.
+				case "find": MoreUtilities.find(argument); // Find a specified file.
 					break;
-				case "stat":
-					MoreUtilities.stat(argument); // Display information about a specified file.
+				case "stat": MoreUtilities.stat(argument); // Display information about a specified file.
 					break;
-				case "wget":
-					NetworkUtilities.wget(argument); // Download a file from the internet.
+				case "wget": NetworkUtilities.wget(argument); // Download a file from the internet.
 					break;
-				case "loadplugin":
-					PluginManager.loadPlugin(argument); // Load a specified specified plugin.
+				case "loadplugin": PluginManager.loadPlugin(argument); // Load a specified specified plugin.
 					break;
-				case "prompt":
-					runShell(argument); System.exit(0); // Reload the shell with the specified prompt, and make sure to exit.
+				case "prompt": runShell(argument); System.exit(0); // Reload the shell with the specified prompt, and make sure to exit.
 					break;
-				case "settingSet":
-					settingSetHandler(argument); // Set the specified setting to a specified value.
+				case "settingSet": settingSetHandler(argument); // Set the specified setting to a specified value.
 					break;
-				case "edit":
-					MoreUtilities.textEdit(argument); // Simple text editor. TODO: Allow loading from file, and cursor control.
+				case "edit": MoreUtilities.textEdit(argument); // Simple text editor. TODO: Allow loading from file, and cursor control.
 					break;
-				case "cp":
-					cp_mvHandler(argument, "cp"); // Copy a file to a specified path with the filename.
+				case "cp": cp_mvHandler(argument, "cp"); // Copy a file to a specified path with the filename.
 					break;
-				case "mv":
-					cp_mvHandler(argument, "mv"); // Move (or rename) a file to a specified path with the filename.
+				case "mv": cp_mvHandler(argument, "mv"); // Move (or rename) a file to a specified path with the filename.
 					break;
-				case "tree":
-					MoreUtilities.tree(argument); // Shows the directory structure.
+				case "tree": MoreUtilities.tree(argument); // Shows the directory structure.
 					break;
-				case "sleep":
-					sleepHandler(argument); // Sleep (stop execution) for the specified amount of time.
+				case "sleep": sleepHandler(argument); // Sleep (stop execution) for the specified amount of time.
 					break;
-				case "calc":
-					System.out.println(MoreUtilities.calc(argument));
+				case "calc": System.out.println(MoreUtilities.calc(argument));
 					break;
 				default:
 					System.out.println("Unknown command: "+cmd);
@@ -186,10 +152,7 @@ public class NanoShell
 					LogDog.log("Unknown command: "+cmd);
 			}
 		}
-		else
-		{
-			handleMoreCommands(cmd);
-		}
+		else handleMoreCommands(cmd);
 	}
 
 	private void handleMoreCommands(String cmd)
@@ -234,11 +197,9 @@ public class NanoShell
 					"31. netstat - Display information about network trafic.\n"+
 					"32. calc <math> - Simple calculator (usage: calc <math(e.g. 5+3*9)>)");
 				break;
-			case "echo":
-				System.out.println("Use: echo <text>"); // Default if no text is provided.
+			case "echo": System.out.println("Use: echo <text>"); // Default if no text is provided.
 				break;
-			case "cd":
-				System.out.println("Use: cd <path>"); // Default if no path is provided.
+			case "cd": System.out.println("Use: cd <path>"); // Default if no path is provided.
 				break;
 			case "clear":
 				System.out.print("\033[H\033[2J\033[3J"); // Clear the screen and scrollback.
@@ -254,83 +215,57 @@ public class NanoShell
 					new Clock().SimpleClock();
 				}
 				break;
-			case "pwd":
-				System.out.println(currentDirectory.getAbsolutePath()); // Displays the full path.
+			case "pwd": System.out.println(currentDirectory.getAbsolutePath()); // Displays the full path.
 				break;
-			case "touch":
-				System.out.println("Use: touch <filename>"); // Default if no filename is provided.
+			case "touch": System.out.println("Use: touch <filename>"); // Default if no filename is provided.
 				break;
-			case "mkdir":
-				System.out.println("Use: mkdir <folder name>"); // Default if no folder is provided.
+			case "mkdir": System.out.println("Use: mkdir <folder name>"); // Default if no folder is provided.
 				break;
-			case "discover":
-				PluginManager.discover();
+			case "discover": PluginManager.discover();
 				break;
-			case "rmdir":
-				System.out.println("Use: rmdir <folder name>"); // Default if no folder is provided.
+			case "rmdir": System.out.println("Use: rmdir <folder name>"); // Default if no folder is provided.
 				break;
-			case "rm":
-				System.out.println("Use: rm <filename>"); // Default if no filename is provided.
+			case "rm": System.out.println("Use: rm <filename>"); // Default if no filename is provided.
 				break;
-			case "cat":
-				System.out.println("Use: cat <filename>"); // Default if no filename is provided.
+			case "cat": System.out.println("Use: cat <filename>"); // Default if no filename is provided.
 				break;
-			case "ping":
-				System.out.println("Use: ping <host>"); // Default if no host is provided.
+			case "ping": System.out.println("Use: ping <host>"); // Default if no host is provided.
 				break;
-			case "prompt":
-				System.out.println("Use: prompt <prompt name>"); // Default if no prompt is provided.
+			case "prompt": System.out.println("Use: prompt <prompt name>"); // Default if no prompt is provided.
 				break;
-			case "settingList":
-				SettingsManager.getSetting();
+			case "settingList": SettingsManager.getSetting();
 				break;
-			case "netstat":
-				NetworkUtilities.netstat();
+			case "netstat": NetworkUtilities.netstat();
 				break;
-			case "settingSet":
-				System.out.println("Use: settingSet <setting> <value>"); // Default if no setting or value is provided.
+			case "settingSet": System.out.println("Use: settingSet <setting> <value>"); // Default if no setting or value is provided.
 				break;
-			case "find":
-				System.out.println("Use: find <filename>"); // Default if no filename is provided.
+			case "find": System.out.println("Use: find <filename>"); // Default if no filename is provided.
 				break;
-			case "calc":
-				System.out.println("Use: calc <math>");
+			case "calc": System.out.println("Use: calc <math>");
 				break;
-			case "cp":
-				System.out.println("Use: cp <filename> <destination>"); // Default if no filename is provided.
+			case "cp": System.out.println("Use: cp <filename> <destination>"); // Default if no filename is provided.
 				break;
-			case "mv":
-				System.out.println("Use: mv <filename> <destination"); // Default if no filename is provided.
+			case "mv": System.out.println("Use: mv <filename> <destination"); // Default if no filename is provided.
 				break;
-			case "tree":
-				System.out.println("Use: tree <folder>"); // Default if no folder is provided.
+			case "tree": System.out.println("Use: tree <folder>"); // Default if no folder is provided.
 				break;
-			case "sleep":
-				System.out.println("Use: sleep <time>"); // Default if no time is provided.
+			case "sleep": System.out.println("Use: sleep <time>"); // Default if no time is provided.
 				break;
-			case "pause":
-				MoreUtilities.pause();
+			case "pause": MoreUtilities.pause();
 				break;
-			case "edit":
-				System.out.println("Use: edit <filename>"); // Default if no filename is provided.
+			case "edit": System.out.println("Use: edit <filename>"); // Default if no filename is provided.
 				break;
-			case "stat":
-				System.out.println("Use: stat <filename>"); // Default if no file is provided.
+			case "stat": System.out.println("Use: stat <filename>"); // Default if no file is provided.
 				break;
-			case "wget":
-				System.out.println("Use: wget <host>"); // Default if no host is provided.
+			case "wget": System.out.println("Use: wget <host>"); // Default if no host is provided.
 				break;
-			case "history":
-				MoreUtilities.showHistory(); // Shows the history of previously run commands.
+			case "history": MoreUtilities.showHistory(); // Shows the history of previously run commands.
 				break;
-			case "systeminfo":
-				MoreUtilities.systeminfo(); // Shows information about the system.
+			case "systeminfo": MoreUtilities.systeminfo(); // Shows information about the system.
 				break;
-			case "ls":
-				FolderManagement.list(""); // List contents from the current directory.
+			case "ls": FolderManagement.list(""); // List contents from the current directory.
 				break;
-			case "loadplugin":
-				System.out.println("Use: loadplugin <plugin>\nExample: loadplugin com.HappyCow.Plugins.ExamplePlugin"); // Default if no plugin is provided.
+			case "loadplugin": System.out.println("Use: loadplugin <plugin>\nExample: loadplugin com.HappyCow.Plugins.ExamplePlugin"); // Default if no plugin is provided.
 				break;
 			default:
 				System.out.println("Unknown command: "+cmd);
@@ -347,14 +282,10 @@ public class NanoShell
 	private void changeDir(String path)
 	{
 		File newDirectory = new File(currentDirectory, path);
-		if (newDirectory.isDirectory() && newDirectory.exists())
-		{
-			currentDirectory = newDirectory;
-		}
-		else
-		{
-			System.out.println("Directory not found: "+path+"\nPlease verify the path and try again.");
-		}
+		if (newDirectory.isDirectory() && newDirectory.exists()) currentDirectory = newDirectory;
+
+		else System.out.println("Directory not found: "+path+"\nPlease verify the path and try again.");
+
 	}
 
 	private void settingSetHandler(String argument)
@@ -372,14 +303,8 @@ public class NanoShell
 		String[] settingsParts = argument.split(" ", 2);
 		if (settingsParts.length == 2)
 		{
-			if (action == "cp")
-			{
-				MoreUtilities.cp(settingsParts[0], settingsParts[1]);
-			}
-			else if (action == "mv")
-			{
-				MoreUtilities.mv(settingsParts[0], settingsParts[1]);
-			}
+			if (action == "cp") MoreUtilities.cp(settingsParts[0], settingsParts[1]);
+			else if (action == "mv") MoreUtilities.mv(settingsParts[0], settingsParts[1]);
 		}
 	}
 

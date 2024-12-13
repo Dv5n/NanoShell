@@ -18,6 +18,5 @@ public class ExamplePlugin implements Plugin
 	public void execute()
 	{
 		System.out.println("Hello, this is a simple plugin!"); // Prints text.
-		// Add more variables or function.
 	}
 }

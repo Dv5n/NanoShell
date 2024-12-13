@@ -38,10 +38,7 @@ public class NetworkUtilities
 		{
 			System.out.println("Ping failed: "+e.getMessage());
 			com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
-			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-			{
-				e.printStackTrace();
-			}
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 		}
 	}
 
@@ -74,20 +71,14 @@ public class NetworkUtilities
 		{
 			System.out.println("Error downloading file: "+e.getMessage());
 			com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
-			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-			{
-				e.printStackTrace();
-			}
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 		}
 	}
 
 	private static String getFileNameFromURL(String urlString)
 	{
 		String filename = urlString.substring(urlString.lastIndexOf('/') + 1);
-		if (filename.isEmpty())
-		{
-			filename = "unknown_name";
-		}
+		if (filename.isEmpty()) filename = "unknown_name";
 		return filename;
 	}
 
@@ -119,10 +110,7 @@ public class NetworkUtilities
 		{
 			System.out.println("Error while running netstat: "+e.getMessage());
 			com.HappyCow.NanoShell.LogDog.log("Exception in NetworkUtilities:\n"+e.toString());
-			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-			{
-				e.printStackTrace();
-			}
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 		}
 	}
 

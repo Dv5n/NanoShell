@@ -65,10 +65,7 @@ public class PluginManager
 	{
 		System.out.println(message);
 		com.HappyCow.NanoShell.LogDog.log("Exception in PluginManager:\n"+e.toString());
-		if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-		{
-			e.printStackTrace();
-		}
+		if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 	}
 
 	public static void discover()
@@ -112,10 +109,7 @@ public class PluginManager
 							PluginMetadata metadata = pluginClass.getAnnotation(PluginMetadata.class);
 							System.out.println("Discovered plugin: "+metadata.name()+" - "+metadata.description()+" ["+metadata.version()+"]");
 						}
-						else
-						{
-							System.out.println("Class does not have @PluginMetadata: "+className);
-						}
+						else System.out.println("Class does not have @PluginMetadata: "+className);
 					}
 					catch (ClassNotFoundException e)
 					{

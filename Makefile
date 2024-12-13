@@ -5,8 +5,7 @@
 JAVAC=javac
 M_PATH=com/HappyCow
 MAIN_CLASS=com.HappyCow.NanoShell.NanoShell
-SOURCE=$(wildcard $(M_PATH)/**/*.java)
-CLASS=$(SOURCE:.java=.class)
+CLASS=$(wildcard $(M_PATH)/**/*.class)
 #===========================================================================================#
 
 .PHONY: build run runJar clean
