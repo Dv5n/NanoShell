@@ -72,13 +72,13 @@ public class MoreUtilities
 		File file = new File(NanoShell.getCurrentDir(), filename);
 		if (file.exists())
 		{
-			System.out.println("Name: "+file.getName());
-			System.out.println("Path: "+file.getAbsolutePath());
-			System.out.println("Size: "+file.length()+" bytes");
-			System.out.println("Last Modified: "+ new java.util.Date(file.lastModified()));
-			System.out.println("Readable: "+file.canRead());
-			System.out.println("Writable: "+file.canWrite());
-			System.out.println("Executable: "+file.canExecute());
+			System.out.println("Name          : "+file.getName());
+			System.out.println("Path          : "+file.getAbsolutePath());
+			System.out.println("Size          : "+file.length()+" bytes");
+			System.out.println("Last Modified : "+new java.util.Date(file.lastModified()));
+			System.out.println("Readable      : "+file.canRead());
+			System.out.println("Writable      : "+file.canWrite());
+			System.out.println("Executable    : "+file.canExecute());
 		}
 		else
 		{
@@ -94,10 +94,7 @@ public class MoreUtilities
 	public static void addCommandToHistory(String cmd)
 	{
 		commandHistory.add(cmd);
-		if (commandHistory.size() > MaxHistorySize)
-		{
-			commandHistory.remove(0);
-		}
+		if (commandHistory.size() > MaxHistorySize) commandHistory.remove(0);
 	}
 
 	/**
@@ -113,16 +110,16 @@ public class MoreUtilities
 	*/
 	public static void systeminfo()
 	{
-		System.out.println("OS: "+System.getProperty("os.name")+
-						"\nArchitecture: "+System.getProperty("os.arch")+
-						"\nAvailable cores: "+Runtime.getRuntime().availableProcessors()+
-						"\nMemory (free/total): "+(Runtime.getRuntime().freeMemory() / 1024 / 1024) +" MB / "+
+		System.out.println("Operating System    : "+System.getProperty("os.name")+
+						"\nArchitecture        : "+System.getProperty("os.arch")+
+						"\nAvailable cores     : "+Runtime.getRuntime().availableProcessors()+
+						"\nMemory (free/total) : "+(Runtime.getRuntime().freeMemory() / 1024 / 1024) +" MB / "+
 						(Runtime.getRuntime().totalMemory() / 1024 / 1024) +" MB");
 
 		File root = new File("/");
 		long totalSpace = root.getTotalSpace();
 		long freeSpace = root.getFreeSpace();
-		System.out.println("Disk (free/total): "+(freeSpace / 1024 / 1024) + " MB / "+
+		System.out.println("Disk (free/total)   : "+(freeSpace / 1024 / 1024) + " MB / "+
 						(totalSpace / 1024 / 1024) + " MB");
 	}
 
@@ -146,16 +143,15 @@ public class MoreUtilities
 		StringBuilder text = new StringBuilder();
 		while (true)
 		{
-			line = console.readLine(">");
+			line = console.readLine(": ");
+				
 			if (line.equals("<$-exit"))
 			{
 				save(filename);
 				break;
 			}
-			if (line.equals("<$-exitNsave"))
-			{
-				break;
-			}
+			if (line.equals("<$-exitNsave")) break;
+
 			textBuffer.append(line).append("\n");
 		}
 	}
@@ -175,10 +171,7 @@ public class MoreUtilities
 		{
 			System.out.println("Error while saving to file: "+e.getMessage());
 			com.HappyCow.NanoShell.LogDog.log("Exception in MoreUtilities:\n"+e.toString());
-			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-			{
-				e.printStackTrace();
-			}
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 		}
 	}
 
@@ -233,14 +226,10 @@ public class MoreUtilities
 			return;
 		}
 
-		if (src.renameTo(dest))
-		{
-			System.out.println("File moved successfully.");
-		}
-		else
-		{
-			System.out.println("Error moving file.");
-		}
+		if (src.renameTo(dest)) System.out.println("File moved successfully.");
+
+		else System.out.println("Error moving file.");
+
 
 	}
 
@@ -267,10 +256,7 @@ public class MoreUtilities
 		{
 			System.out.println(indent + file.getName());
 
-			if (file.isDirectory())
-			{
-				treeRecursive(file.getAbsolutePath(), level + 1);
-			}
+			if (file.isDirectory()) treeRecursive(file.getAbsolutePath(), level + 1);
 		}
 	}
 
@@ -293,10 +279,7 @@ public class MoreUtilities
 		{
 			System.out.println("Sleep interrupted.");
 			com.HappyCow.NanoShell.LogDog.log("Exception in MoreUtilities:\n"+e.toString());
-			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-			{
-				e.printStackTrace();
-			}
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 		}
 	}
 
@@ -314,10 +297,7 @@ public class MoreUtilities
 		{
 			System.out.println("Error: "+e.getMessage());
 			com.HappyCow.NanoShell.LogDog.log("Exception in MoreUtilities:\n"+e.toString());
-			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode)
-			{
-				e.printStackTrace();
-			}
+			if (com.HappyCow.NanoShell.SettingsManager.IsDeveloperMode) e.printStackTrace();
 		}
 	}
 
@@ -329,10 +309,7 @@ public class MoreUtilities
 	{
 		expression = expression.replaceAll(" ", "");
 
-		if (!expression.matches("[0-9\\+\\-\\*/\\.]+"))
-		{
-			return "Error: invalid input";
-		}
+		if (!expression.matches("[0-9\\+\\-\\*/\\.]+")) return "Error: invalid input";
 
 		expression = calcHelper(expression, "*", "/");
 		return calcHelper(expression, "+", "-");
@@ -355,10 +332,8 @@ public class MoreUtilities
 				matcher = pattern.matcher(expression);
 			}
 
-			if (expression.contains(".0"))
-			{
-				return String.format("%.0f", Double.parseDouble(expression));
-			}
+			if (expression.contains(".0")) return String.format("%.0f", Double.parseDouble(expression));
+
 			return expression;
 		}
 		catch (NumberFormatException e)

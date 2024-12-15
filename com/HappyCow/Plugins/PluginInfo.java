@@ -15,7 +15,9 @@ public class PluginInfo implements Plugin
 	@Override
 	public void execute()
 	{
-		System.out.println("Api Version: "+PluginManager.API_VERSION);
-		System.out.println("Incompatible Api Versions: "+PluginManager.INCOMPATIBLE_API_VERSIONS);
+
+		System.out.println("Plugin System Info: \n"+
+							"Api Version: "+PluginManager.API_VERSION+
+							"Incompatible Api Versions: "+PluginManager.INCOMPATIBLE_API_VERSIONS);
 	}
 }

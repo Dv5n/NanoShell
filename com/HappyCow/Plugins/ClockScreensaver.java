@@ -47,7 +47,6 @@ public class ClockScreensaver implements Plugin
 			}
 			catch (InterruptedException e)
 			{
-				System.out.println("Clock interrupted...");
 				break;
 			}
 		}
