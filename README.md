@@ -36,3 +36,5 @@ If you'd like to contribute to NanoShell, fork the repository, make your changes
 Considering a possible transition of NanoShell to C.
 
 I have been working on and testing the C version, which is faster and has simpler code. It it is still far from complete.
+
+The transition to C is coming!
