@@ -33,6 +33,8 @@ If you'd like to contribute to NanoShell, fork the repository, make your changes
 ## Additional Notes
 **WARNING:** NanoShell is almost complete, and as a result, future commits may be delayed, or the project might even be discontinued. However, with your support, I can keep this project alive for years to come.
 
-I have been working on and testing the C version, which is faster and has simpler code. It it is still far from complete.
+I have been working on and testing the C version, which is faster and has simpler code.
 
 The transition to C is coming!
+
+UPDATE: Plugin system implemented in C!
