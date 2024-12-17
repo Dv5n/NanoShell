@@ -1,4 +1,4 @@
-# NanoShell
+# NanoShell Java Edition
 ![1000103669](https://github.com/user-attachments/assets/6dea937f-714b-4e24-935e-107b597cbc3c)
 
 Simple Java shell, but with many useful features!
