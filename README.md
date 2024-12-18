@@ -1,14 +1,9 @@
 # NanoShell
 ![1000103669](https://github.com/user-attachments/assets/6dea937f-714b-4e24-935e-107b597cbc3c)
 
-Simple Java(C) shell, but with many useful features!
+Simple C shell, but with many useful features!
 
-**Warning**: Transition not complete.
-
-NanoShell has 28+ commands, including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `ping`, `find`, `systeminfo`, `cp`, `mv`, `tree`, and *many* others!
-
-NanoShell also supports running multiple commands with `&&`.
-Example use: `clear && ls`
+NanoShell has 15+ commands, including useful commands like: `mkdir`, `rmdir`, `ls`, `pwd`, `rm`, `touch`, `cat`, `stat`, `sysinfo`, `tree`, and *many* others!
 
 ## Running
 You can compile NanoShell using `make` and then `make run`.
@@ -30,6 +25,3 @@ Run plugins using: `lplugin plugins/<YourPluginHere!>`.
 
 ## Contribute
 If you'd like to contribute to NanoShell, fork the repository, make your changes, and submit a pull request. If I like the changes, I will merge them into the main (dev) branch.
-
-## Additional Notes
-**WARNING:** NanoShell is almost complete, and as a result, future commits may be delayed, or the project might even be discontinued. However, with your support, I can keep this project alive for years to come.

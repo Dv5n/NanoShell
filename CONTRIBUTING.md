@@ -11,14 +11,13 @@ I will merge them into the main branch.
 You can start by improving something,
 adding a new command that is not on the list,
 modify existing commands, or even add new plugins,
-follow the example plugin `ExamplePlugin.java` located in
-`com/HappyCow/Plugins` or modify it to say something else.
+follow the example plugin `ExamplePlugin.c` located in
+`plugins/` or modify it to say something else.
 
 I will try my best to make plugins as simple to create and modify as possible!
 
-If you encounter any errors, exceptions or questions, open an issue,
+If you encounter any errors or questions, open an issue,
 and I will try to help you!
 
 You can create issues even for requesting commands or improvements,
 I will add the command or improvement to the TODO file.
-

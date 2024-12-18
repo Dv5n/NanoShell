@@ -1,37 +1,52 @@
-#===========================================================================================#
-# NanoShell, Simple Java UNIX shell.
-# Simple, but useful!
-#=[Options]=================================================================================#
-JAVAC=javac
-M_PATH=com/HappyCow
-MAIN_CLASS=com.HappyCow.NanoShell.NanoShell
-CLASS=$(wildcard $(M_PATH)/**/*.class)
-#===========================================================================================#
+#=========================================================================================================#
+# NanoShell - simple, but useful C shell!                                                                 #
+#=[Options]===============================================================================================#
+# The C compiler to use.
+C := gcc
 
-.PHONY: build run runJar clean
+# NanoShell version.
+VER := 0.3.1
 
-build: $(CLASS)
-	$(info Building JAR...)
-	@jar cfe NanoShell.jar \
-	$(M_PATH)/NanoShell/NanoShell \
-	$(M_PATH)/NanoShell/*.class \
-	$(M_PATH)/SimpleClock/*.class \
-	$(M_PATH)/ShellUtilities/*.class \
-	$(M_PATH)/Plugins/*.class \
-	$(M_PATH)/Plugins/PluginManager/*.class
+# Output directory.
+OUT_DIR := build
 
-%.class: %.java
-	@$(info Compiling $<...)
-	@$(JAVAC) -Xdiags:verbose $<
+# Plugins directory.
+PLUGIN_DIR := plugins
 
-run:
-	$(info Running...)
-	@java $(MAIN_CLASS)
+# Main executable.
+EXEC := $(OUT_DIR)/NanoShell-$(shell uname -m)
 
-runJar:
-	$(info Running JAR...)
-	@java -jar NanoShell.jar
+# C Arguments for more efficient code.
+ARG := -Werror -Wall -Wextra -Wundef -Wshadow -Wconversion -Wunreachable-code -flto -pipe -c  -O2
+#=========================================================================================================#
+build:
+	$(info #=[NanoShell C Edition, version $(VER)]==#)
+	$(info #============[Build Options]============#)
+	$(info # Compiler    : $(C))
+	$(info # Output dir  : $(OUT_DIR))
+	$(info # Architecture: $(shell uname -m))
+	$(info # Final binary: $(EXEC))
+	$(info #=======================================#)
+	@mkdir -p $(OUT_DIR)
+	$(C) $(ARG) main.c -o $(OUT_DIR)/main.o
+	$(C) $(ARG) shell.c -o $(OUT_DIR)/shell.o
+	$(C) $(ARG) plugin.c -o $(OUT_DIR)/plugin.o
+	$(C) -s $(OUT_DIR)/main.o $(OUT_DIR)/shell.o $(OUT_DIR)/plugin.o -o $(EXEC)
+	@cd ./plugins && $(MAKE)
+
+run: $(EXEC)
+	$(EXEC)
 
 clean:
-	$(info Cleaning up...)
-	@rm -f $(CLASS) NanoShell.jar
+	rm -rf $(OUT_DIR)/*
+	rm -rf $(PLUGIN_DIR)/*.so
+
+.PHONY: build run clean
+
+# (NANOSHELL_C_EDITION) key: C-HcrcF@TrVKITNU87GcUZV8h8px#yFe
+# CatKeyStyle VERSION 2
+# This is a valid CatKeyStyle key.
+# Note: If you don't know what "CatKeyStyle" is, it is a complex 32 characters long,
+# (2-prefix"C-"+30-key) key that must be "CatKeyStyle" valid, to be valid it must
+# pass all checks in a specific checker that I made. These keys are used for every of my C projects.
+#=========================================================================================================#

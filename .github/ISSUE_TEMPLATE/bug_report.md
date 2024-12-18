@@ -19,7 +19,7 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 **Full error message**
-If applicable, add the full error message or the full exception with "IsDeveloperMode" set to true, to help explain your problem.
+If applicable, add the full error message to help explain your problem.
 
 **System (please complete the following information):**
  - OS: [e.g. Android]

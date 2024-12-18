@@ -1,15 +1,8 @@
 ## TODO ideas
 
 ### Priority: HIGH
-
+1. find and fix bugs.
 ### Priority: Medium
-1. Add more exception handling.
-
+*Nothing here...*
 ### Priority: Low
-1. Add a calculator (maybe plugin)
-2. System Monitor (`monitor` command)
 3. Add `random` command to generate random numbers.
-
-## Additional notes
-
-More ideas *coming soon*!
