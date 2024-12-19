@@ -65,10 +65,11 @@ void NanoShell(const char* prompt)
 							"10. touch   = Creates an empty file.\n"
 							"11. date    = Displays date and time.\n"
 							"12. lplugin = Loads a specified plugin.\n"
-							"13. cat     = Prints the text in the specified file.\n"
-							"14. stat    = Displays information about the specified file.\n"
-							"15. tree    = Displays the specified directory structure.\n"
-							"16. sysinfo = Displays information about the system\n", version);
+							"13. fplugin = Finds plugins in the default directory.\n"
+							"14. cat     = Prints the text in the specified file.\n"
+							"15. stat    = Displays information about the specified file.\n"
+							"16. tree    = Displays the specified directory structure.\n"
+							"17. sysinfo = Displays information about the system\n", version);
 				}
 			}
 
@@ -79,6 +80,8 @@ void NanoShell(const char* prompt)
 			else if (strcmp(command, "date") == 0) Date();
 
 			else if (strcmp(command, "sysinfo") == 0) Sysinfo();
+
+			else if (strcmp(command, "fplugin") == 0) discover();
 
 			else if (strcmp(command, "lplugin") == 0)
 			{

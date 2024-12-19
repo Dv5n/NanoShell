@@ -1,7 +1,7 @@
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
-typedef struct Plugin
+typedef struct
 {
 	const char* name;
 	const char* description;

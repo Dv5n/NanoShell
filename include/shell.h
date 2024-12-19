@@ -15,5 +15,6 @@ const char* releasedate = "18/12/2024";
 uint32_t running; // Used to exit the shell.
 
 extern Plugin* loadplugin(const char* pluginN);
+extern void discover();
 
 #endif // SHELL_H
