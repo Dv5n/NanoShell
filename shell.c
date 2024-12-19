@@ -74,13 +74,9 @@ void NanoShell(const char* prompt)
 			}
 
 			else if (strcmp(command, "clear") == 0) printf(CLEAR_SCREEN);
-
 			else if (strcmp(command, "pwd") == 0) Pwd();
-
 			else if (strcmp(command, "date") == 0) Date();
-
 			else if (strcmp(command, "sysinfo") == 0) Sysinfo();
-
 			else if (strcmp(command, "fplugin") == 0) discover();
 
 			else if (strcmp(command, "lplugin") == 0)
@@ -120,7 +116,7 @@ void NanoShell(const char* prompt)
 			{
 				if (arg1 != NULL) Tree(arg1);
 
-				else printf("Use: tree <directory>\n");
+				else Tree(".");
 			}
 
 			else if (strcmp(command, "stat") == 0)

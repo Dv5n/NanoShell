@@ -36,7 +36,7 @@ void Sysinfo()
 	{
 		unsigned long long totalDisk = (unsigned long long)disk.f_blocks * disk.f_frsize;
 		unsigned long long freeDisk = (unsigned long long)disk.f_bfree * disk.f_frsize;
-		printf("Disk (free/total)  : %llu MB / %llu MB\n",
+		printf("Disk   (free/total): %llu MB / %llu MB\n",
 				freeDisk / (1024 * 1024),
 				totalDisk / (1024 * 1024));
 	}
