@@ -31,10 +31,9 @@ Run plugins using: `pluginload com.HappyCow.Plugins.<YourPluginNameHere!>`.
 If you'd like to contribute to NanoShell, fork the repository, make your changes, and submit a pull request. If I like the changes, I will merge them into the main (dev) branch.
 
 ## Additional Notes
-**WARNING:** NanoShell is almost complete, and as a result, future commits may be delayed, or the project might even be discontinued. However, with your support, I can keep this project alive for years to come.
+**WARNING:** NanoShell Java Edition (classic or original) is _discontinued_.
+If you want Java, then use MiniNanoShell which will always be in Java.
 
-I have been working on and testing the C version, which is faster and has simpler code.
+If you want the most up to date version, then don't use this branch (legacy), instead use dev or main, dev is more up to date.
 
-The transition to C is coming!
-
-UPDATE: Plugin system implemented in C!
+Last NanoShell Java Edition version is 0.8.1
