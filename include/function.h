@@ -13,7 +13,6 @@
 
 extern const char* version;
 extern const char* releasedate;
-extern const char* key;
 
 const char* identifier_name = "NANOSHELL_C_EDITION";
 const char* original_author = "Dv5n";
@@ -30,7 +29,7 @@ void Ls(const char* path)
 
 	if (directory == NULL)
 	{
-		perror("ls");
+		perror("Error");
 		return;
 	}
 	while ((entry = readdir(directory)) != NULL)
@@ -56,7 +55,7 @@ void Cd(const char* path)
 		return;
 	}
 
-	if (chdir(path) != 0) perror("cd");
+	if (chdir(path) != 0) perror("Error");
 }
 
 /**
@@ -67,7 +66,7 @@ void Pwd()
 	char path[512];
 	if (getcwd(path, sizeof(path)) != NULL) printf("%s\n", path);
 
-	else perror("pwd");
+	else perror("Error");
 }
 
 /**
@@ -83,7 +82,7 @@ void Mkdir(const char* dir, unsigned int permissions)
 		return;
 	}
 
-	if (mkdir(dir, permissions) == -1) perror("mkdir");
+	if (mkdir(dir, permissions) == -1) perror("Error");
 }
 
 /**
@@ -98,12 +97,12 @@ void Rmdir(const char* dir)
 		return;
 	}
 
-	if (rmdir(dir) == -1) perror("rmdir");
+	if (rmdir(dir) == -1) perror("Error");
 }
 
 /**
 * Removes a specified file.
-* param file The filename of the file to remove.
+* param file The file to remove.
 */
 void Rm(const char* file)
 {
@@ -113,12 +112,12 @@ void Rm(const char* file)
 		return;
 	}
 
-	if (unlink(file) == -1) perror("rm");
+	if (unlink(file) == -1) perror("Error");
 }
 
 /**
 * Creates an empty file.
-* @param filename The filename of the file to create.
+* @param filename The file to create.
 */
 void Touch(const char* filename)
 {
@@ -131,7 +130,7 @@ void Touch(const char* filename)
 	FILE *file = fopen(filename, "a");
 	if (file == NULL)
 	{
-		perror("touch");
+		perror("Error");
 		return;
 	}
 
@@ -140,7 +139,7 @@ void Touch(const char* filename)
 
 /**
 * Displays the contents of a specified file.
-* @param filename The filename of the file to view.
+* @param filename The file to view.
 */
 void Cat(const char* filename)
 {
@@ -154,7 +153,7 @@ void Cat(const char* filename)
 
 	if (file == NULL)
 	{
-		perror("cat");
+		perror("Error");
 		return;
 	}
 
@@ -172,7 +171,7 @@ void Cat(const char* filename)
 /**
 * Displays the information of a specified file.
 * (e.g. Size, Last modified, etc)
-* @param filename The filename of the file to check.
+* @param filename The file to check.
 */
 void Stat(const char* filename)
 {
@@ -185,7 +184,7 @@ void Stat(const char* filename)
 	struct stat fileStat;
 	if (stat(filename, &fileStat) < 0)
 	{
-		perror("stat");
+		perror("Error");
 		return;
 	}
 
@@ -196,8 +195,9 @@ void Stat(const char* filename)
 }
 
 /**
+* Displays the directory structure.
 * Helper function to Tree(...)
-* You should not run this.
+* You should not use this.
 * @param dirName the directory to view.
 * @param depth the depth.
 */
@@ -206,7 +206,7 @@ void Print_tree(const char* dirName, int depth)
 	DIR* dir = opendir(dirName);
 	if (dir == NULL)
 	{
-		perror("tree");
+		perror("Error");
 		return;
 	}
 
@@ -248,6 +248,76 @@ void Tree(const char* dir)
 }
 
 /**
+* Find a specified file.
+* @param filename The file to find.
+*/
+void Find(const char* filename, const char* dirnow)
+{
+	if (filename == NULL)
+	{
+		printf("file string empty.\n");
+		return;
+	}
+
+	DIR* dir;
+	struct dirent* entry;
+	char path[128];
+
+	dir = opendir(dirnow);
+	if (dir == NULL)
+	{
+		perror("Error");
+	}
+
+	while ((entry = readdir(dir)) != NULL)
+	{
+		if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
+
+		snprintf(path, sizeof(path), "%s/%s", dirnow, entry->d_name);
+
+		if (strcmp(entry->d_name, filename) == 0) printf("Found: %s\n", path);
+
+		if (entry->d_type == DT_DIR)
+		{
+			Find(filename, path);
+		}
+	}
+	closedir(dir);
+}
+
+/**
+* Echo text to file.
+* @param text The text to write.
+* @param filename The file to write.
+*/
+void Fecho(const char* text, const char* filename)
+{
+	if (text == NULL)
+	{
+		printf("Text string empty.\n");
+		return;
+	}
+
+	if (filename == NULL)
+	{
+		printf("File string empty.\n");
+		return;
+	}
+	
+	FILE* file = fopen(filename, "w");
+
+	if (file == NULL)
+	{
+		perror("Error");
+		return;
+	}
+
+	if (fprintf(file, "%s\n", text) < 0) perror("Error");
+
+	fclose(file);
+}
+
+/**
 * Displays the current date and time,
 * in a cool looking style.
 */
@@ -273,7 +343,7 @@ void Date()
 * If yes then return 1,
 * If not then return 0.
 */
-int Christmas()
+unsigned int Christmas()
 {
 	time_t now = time(NULL);
 	struct tm* tm_info = localtime(&now);
@@ -310,7 +380,7 @@ void MoreHelp(const char* help)
 		ascii_art[4]="    /o*o*o*o\\    ";
 		ascii_art[5]="   /*o*o*o*o*\\   ";
 		ascii_art[6]="  /o*o*o*o*o*o\\  ";
-		ascii_art[7]="       |||        ";
+		ascii_art[7]="       |||       "; // Needed for correct printing.
 		ascii_art[8]="[Merry Christmas!]";
 	}
 	else
@@ -322,7 +392,7 @@ void MoreHelp(const char* help)
 		ascii_art[4]="    ^^^^^^^^^     ";
 		ascii_art[5]="   ^^^^^^^^^^^    ";
 		ascii_art[6]="  ^^^^^^^^^^^^^   ";
-		ascii_art[7]="       |||        ";
+		ascii_art[7]="       |||       "; // Needed for correct printing.
 		ascii_art[8]="   [NanoShell]    ";
 	}
 
@@ -330,7 +400,7 @@ void MoreHelp(const char* help)
 	{
 		printf("%s", ascii_art[0]); printf(" NanoShell C Edition, Version: %s\n", version);
 		printf("%s", ascii_art[1]); printf(" --------------------------------------------------\n");
-		printf("%s", ascii_art[2]); printf(" # Identifier Key : %s\n", key);
+		printf("%s", ascii_art[2]); printf(" # Identifier Key : %s\n", "C-HcrcF@TrVKITNU87GcUZV8h8px#yFe");
 		printf("%s", ascii_art[3]); printf(" # Identifier Name: %s\n", identifier_name);
 		printf("%s", ascii_art[4]); printf(" # Original Author: %s\n", original_author);
 		printf("%s", ascii_art[5]); printf(" # Latest Release : %s\n", releasedate);
@@ -359,7 +429,7 @@ void Sysinfo()
 	struct utsname sys_info;
 	if (uname(&sys_info) < 0)
 	{
-		perror("sysinfo");
+		perror("Error");
 		return;
 	}
 

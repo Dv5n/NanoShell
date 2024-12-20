@@ -5,7 +5,7 @@
 C := gcc
 
 # NanoShell version.
-VER := 0.3.2
+VER := 0.3.3
 
 # Output directory.
 OUT_DIR := build
@@ -40,6 +40,7 @@ run: $(EXEC)
 clean:
 	rm -rf $(OUT_DIR)/*
 	rm -rf $(PLUGIN_DIR)/*.so
+	rm -rf $(PLUGIN_DIR)/**/*.so
 
 .PHONY: build run clean
 

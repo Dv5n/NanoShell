@@ -13,11 +13,7 @@ void execute()
 		now = time(NULL);
 		tm_struct = localtime(&now);
 
-		if (tm_struct == NULL)
-		{
-			perror("date");
-			return;
-		}
+		if (tm_struct == NULL) return;
 
 		printf("\033[H\033[2J\033[3J"
 				"#=[Date&Time]==============#\n"

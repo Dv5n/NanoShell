@@ -34,7 +34,7 @@ void discover()
 	DIR *dir = opendir(PLUGIN_DIR);
 	if (dir == NULL)
 	{
-		perror("discover");
+		perror("Error");
 		return;
 	}
 

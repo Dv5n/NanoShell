@@ -9,10 +9,8 @@
 
 char cmd[BUFFER];
 
-const char* version = "0.3.2";
-const char* key = "C-HcrcF@TrVKITNU87GcUZV8h8px#yFe";
-const char* releasedate = "19/12/2024";
-uint32_t running; // Used to exit the shell.
+const char* version = "0.3.3";
+const char* releasedate = "20/12/2024";
 
 // For plugins.
 extern Plugin* loadplugin(const char* pluginN);

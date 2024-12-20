@@ -18,10 +18,9 @@ Copyright (C) 2024 Dv5n
 
 #include "include/shell.h"
 
-void NanoShell(const char* prompt)
+int NanoShell(const char* prompt)
 {
-	running = 1;
-	while (running)
+	while (1)
 	{
 		printf("%s", prompt);
 		fgets(cmd, BUFFER, stdin);
@@ -33,13 +32,14 @@ void NanoShell(const char* prompt)
 		// Split, the actual command, and one argument, for now.
 		char* command = strtok(cmd, " ");
 		char* arg1 = strtok(NULL, " ");
+		char* arg2 = strtok(NULL, " ");
 
 		if (command != NULL)
 		{
 			if (strcmp(command, "exit") == 0)
 			{
 				printf("Goodbye, have a good day!\n");
-				running = 0;
+				return 0;
 			}
 
 			else if (strcmp(command, "help") == 0)
@@ -63,20 +63,26 @@ void NanoShell(const char* prompt)
 							"8.  rmdir   = Removes an empty folder.\n"
 							"9.  rm      = Removes a file.\n"
 							"10. touch   = Creates an empty file.\n"
-							"11. date    = Displays date and time.\n"
-							"12. lplugin = Loads a specified plugin.\n"
-							"13. fplugin = Finds plugins in the default directory.\n"
-							"14. cat     = Prints the text in the specified file.\n"
-							"15. stat    = Displays information about the specified file.\n"
-							"16. tree    = Displays the specified directory structure.\n"
-							"17. sysinfo = Displays information about the system\n", version);
+							"11. cat     = Prints the text in the specified file.\n"
+							"12. stat    = Displays information about the specified file.\n"
+							"13. tree    = Displays the specified directory structure.\n"
+							"14. find    = Finds a specified file.\n"
+							"15. date    = Displays date and time.\n"
+							"16. fecho   = Outputs text to specified file.\n"
+							"17. lplugin = Loads a specified plugin.\n"
+							"18. fplugin = Finds plugins in the default directory.\n"
+							"19. sysinfo = Displays information about the system\n", version);
 				}
 			}
 
 			else if (strcmp(command, "clear") == 0) printf(CLEAR_SCREEN);
+
 			else if (strcmp(command, "pwd") == 0) Pwd();
+
 			else if (strcmp(command, "date") == 0) Date();
+
 			else if (strcmp(command, "sysinfo") == 0) Sysinfo();
+
 			else if (strcmp(command, "fplugin") == 0) discover();
 
 			else if (strcmp(command, "lplugin") == 0)
@@ -102,6 +108,26 @@ void NanoShell(const char* prompt)
 				if (arg1 != NULL) Cd(arg1);
 
 				else printf("Use: cd <path>\n");
+			}
+
+			else if (strcmp(command, "fecho") == 0)
+			{
+				if (arg1 != NULL && arg2 != NULL) Fecho(arg1, arg2);
+				
+				else if (arg1 != NULL && arg2 == NULL)
+				{
+					printf("No file entered, using default \"file\"...\n");
+					Fecho(arg1, "file");
+				}
+
+				else printf("Use: fecho <text> <filename>\n");
+			}
+
+			else if (strcmp(command, "find") == 0)
+			{
+				if (arg1 != NULL) Find(arg1, ".");
+
+				else printf("Use: find <filename>\n");
 			}
 
 			else if (strcmp(command, "cat") == 0)
@@ -157,4 +183,5 @@ void NanoShell(const char* prompt)
 						"Type \"help\" for information on commands.\n", cmd);
 		}
 	}
+	return 1;
 }
