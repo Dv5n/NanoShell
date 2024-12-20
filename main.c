@@ -20,7 +20,7 @@ Copyright (C) 2024 Dv5n
 
 int main(void)
 {
-	printf(WELCOME);
+	printf(WELCOME); // Prints the WELCOME macro defined in main.h
 
 	NanoShell("HappyCow :-) "); // Running the shell, with a specified prompt.
 	return 0; // Exits with no errors.

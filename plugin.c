@@ -9,13 +9,14 @@
 
 Plugin* loadplugin(const char* pluginName)
 {
+	// If the pluginName is empty. (null)
 	if (pluginName == NULL) return NULL;
 
 	void* handle = dlopen(pluginName, RTLD_LAZY);
 	if (!handle)
 	{
 		fprintf(stderr, "Error loading plugin: %s\n", dlerror());
-		return NULL;
+		return NULL; // Plugin failed to load.
 	}
 
 	Plugin* plugin = (Plugin*)dlsym(handle, "plugin");
@@ -24,14 +25,14 @@ Plugin* loadplugin(const char* pluginName)
 	{
 		fprintf(stderr, "Error finding symbol: %s\n", error);
 		dlclose(handle);
-		return NULL;
+		return NULL; // Plugin failed to load.
 	}
-	return plugin;
+	return plugin; // Plugin loaded successfully.
 }
 
 void discover()
 {
-	DIR *dir = opendir(PLUGIN_DIR);
+	DIR *dir = opendir(PLUGIN_DIR); // Open the directory.
 	if (dir == NULL)
 	{
 		perror("Error");
@@ -59,7 +60,7 @@ void discover()
 			if (!info)
 			{
 				fprintf(stderr, "Failed to find plugin in %s: %s\n", plugin_path, dlerror());
-				dlclose(handle);
+				dlclose(handle); // Close the handle to prevent memory leaks.
 				return;
 			}
 
@@ -68,8 +69,8 @@ void discover()
 			printf("\tDescription: %s\n", info->description);
 			printf("\tVersion    : %s\n", info->version);
 
-			dlclose(handle);
+			dlclose(handle); // Close the handle to prevent memory leaks.
 		}
 	}
-	closedir(dir);
+	closedir(dir); // Close the directory to prevent memory leaks.
 }

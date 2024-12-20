@@ -9,7 +9,7 @@
 
 char cmd[BUFFER];
 
-const char* version = "0.3.3";
+const char* version = "0.3.4";
 const char* releasedate = "20/12/2024";
 
 // For plugins.

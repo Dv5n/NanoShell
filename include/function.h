@@ -11,11 +11,13 @@
 #include <sys/utsname.h>
 #include <sys/statvfs.h>
 
-extern const char* version;
-extern const char* releasedate;
+#define FILE_BUFFER	1024
 
-const char* identifier_name = "NANOSHELL_C_EDITION";
-const char* original_author = "Dv5n";
+extern const char* version; // NanoShell version.
+extern const char* releasedate; // The date of the newest changes.
+
+const char* identifier_name = "NANOSHELL_C_EDITION"; // Identifier, not really used.
+const char* original_author = "Dv5n"; // The original author for NanoShell, don't change.
 
 /**
 * Displays files and directories, in the specified path,
@@ -25,22 +27,22 @@ const char* original_author = "Dv5n";
 void Ls(const char* path)
 {
 	struct dirent *entry;
-	DIR *directory = opendir(path);
+	DIR *directory = opendir(path); // Open the directory.
 
 	if (directory == NULL)
 	{
 		perror("Error");
-		return;
+		return; // Return (exit) if NULL. (failure)
 	}
 	while ((entry = readdir(directory)) != NULL)
 	{
-		if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue;
+		if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0) continue; // Skip "." and ".." directories.
 
-		if (entry->d_type == DT_DIR) printf("[dir ] %s\n", entry->d_name);
+		if (entry->d_type == DT_DIR) printf("[dir ] %s\n", entry->d_name); // Directories.
 
-		else if (entry->d_type == DT_REG) printf("[file] %s\n", entry->d_name);
+		else if (entry->d_type == DT_REG) printf("[file] %s\n", entry->d_name); // Files.
 	}
-	closedir(directory);
+	closedir(directory); // Close the directory to prevent memory leaks.
 }
 
 /**
@@ -127,14 +129,14 @@ void Touch(const char* filename)
 		return;
 	}
 
-	FILE *file = fopen(filename, "a");
+	FILE *file = fopen(filename, "a"); // Open file in append mode.
 	if (file == NULL)
 	{
 		perror("Error");
 		return;
 	}
 
-	fclose(file);
+	fclose(file); // Close the file to prevent memory leaks.
 }
 
 /**
@@ -149,7 +151,7 @@ void Cat(const char* filename)
 		return;
 	}
 
-	FILE* file = fopen(filename, "r");
+	FILE* file = fopen(filename, "r"); // Open file in read mode.
 
 	if (file == NULL)
 	{
@@ -287,24 +289,19 @@ void Find(const char* filename, const char* dirnow)
 
 /**
 * Echo text to file.
+* This can be a simple text editor.
 * @param text The text to write.
-* @param filename The file to write.
+* @param filename The file to write to.
 */
 void Fecho(const char* text, const char* filename)
 {
-	if (text == NULL)
+	if (text == NULL || filename == NULL)
 	{
 		printf("Text string empty.\n");
 		return;
 	}
-
-	if (filename == NULL)
-	{
-		printf("File string empty.\n");
-		return;
-	}
 	
-	FILE* file = fopen(filename, "w");
+	FILE* file = fopen(filename, "w"); // Open file in write mode.
 
 	if (file == NULL)
 	{
@@ -315,6 +312,147 @@ void Fecho(const char* text, const char* filename)
 	if (fprintf(file, "%s\n", text) < 0) perror("Error");
 
 	fclose(file);
+}
+
+/**
+* Copy file to specified directory
+* @param src The source file.
+* @param dest The destination path. (either a file or directory)
+*/
+void Cp(char* src, char* dest)
+{
+	struct stat src_stat;
+	struct stat dest_stat;
+
+	if (src == NULL || dest == NULL)
+	{
+		printf("File string empty.\n");
+		return;
+	}
+
+	if (stat(src, &src_stat) == -1)
+	{
+		perror("Error");
+		return;
+	}
+
+	if (stat(dest, &dest_stat) == 0 && S_ISDIR(dest_stat.st_mode))
+	{
+		char *filename = strrchr(src, '/');
+		if (filename == NULL) filename = src;
+
+		else filename++;
+
+		char dest_file[1024];
+		snprintf(dest_file, sizeof(dest_file), "%s/%s", dest, filename);
+
+		FILE *source = fopen(src, "rb");
+		if (source == NULL)
+		{	
+			perror("Error");
+			return;
+		}
+
+		FILE *destination = fopen(dest_file, "wb");
+		if (destination == NULL)
+		{	
+			perror("Error");
+			fclose(source);
+			return;
+		}
+
+		char buffer[FILE_BUFFER];
+		size_t bytesRead;
+		while ((bytesRead = fread(buffer, 1, sizeof(buffer), source)) > 0)
+		{
+			fwrite(buffer, 1, bytesRead, destination);
+		}
+		fclose(source);
+		fclose(destination);
+		printf("File %s copied successfully to: %s\n", src, dest_file);
+	}
+	else
+	{
+
+		FILE *source = fopen(src, "rb");
+		if (source == NULL)
+		{
+			perror("Error");
+			return;
+		}
+
+		FILE *destination = fopen(dest, "wb");
+		if (destination == NULL)
+		{
+			perror("Error");
+			fclose(source);
+			return;
+		}
+
+		char buffer[FILE_BUFFER];
+		size_t bytesRead;
+		while ((bytesRead = fread(buffer, 1, sizeof(buffer), source)) > 0)
+		{
+			fwrite(buffer, 1, bytesRead, destination);
+		}
+
+		fclose(source);
+		fclose(destination);
+		printf("File %s copied successfully to: %s\n", src, dest);
+	}
+}
+
+/**
+* Move file to specified directory
+* @param src The source file.
+* @param dest The destination path. (either a file or directory)
+*/
+void Mv(char* src, char* dest)
+{
+	struct stat src_stat;
+	struct stat dest_stat;
+
+	if (src == NULL || dest == NULL)
+	{
+		printf("File string empty.\n");
+		return;
+	}
+
+	if (stat(src, &src_stat) == -1)
+	{
+		perror("Error");
+		return;
+	}
+
+	if (stat(dest, &dest_stat) == 0 && S_ISDIR(dest_stat.st_mode))
+	{
+		char *filename = strrchr(src, '/');
+		if (filename == NULL) filename = src;
+
+		else filename++;
+
+		char dest_file[1024];
+		snprintf(dest_file, sizeof(dest_file), "%s/%s", dest, filename);
+
+		if (rename(src, dest_file) != 0)
+		{
+			perror("Error");
+			return;
+		}
+
+		printf("File %s successfully moved to: %s\n", src, dest_file);
+	}
+	else
+	{
+		if (rename(src, dest) != 0)
+		{
+			perror("Error");
+			return;
+		}
+
+		printf("File %s successfully moved to: %s\n", src, dest);
+	}
+
 }
 
 /**

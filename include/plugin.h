@@ -8,7 +8,7 @@ typedef struct
 	const char* description;
 	const char* version;
 
-	void (*execute)();
+	void (*execute)(); // execute function.
 } Plugin;
 
 #endif // PLUGIN_H

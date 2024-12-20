@@ -14,7 +14,7 @@ modify existing commands, or even add new plugins,
 follow the example plugin `ExamplePlugin.c` located in
 `plugins/` or modify it to say something else.
 
-I will try my best to make plugins as simple to create and modify as possible!
+I will do my best to make plugins as simple to create and modify as possible!
 
 If you encounter any errors or questions, open an issue,
 and I will try to help you!

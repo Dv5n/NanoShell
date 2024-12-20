@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 
+// Welcome message.
 #define WELCOME	"#=[Welcome to NanoShell!]=============#\n" \
 				"# Type \"help\" for more information.\n" \
 				"#=====================================#\n"

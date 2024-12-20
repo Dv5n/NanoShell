@@ -25,16 +25,16 @@ int NanoShell(const char* prompt)
 		printf("%s", prompt);
 		fgets(cmd, BUFFER, stdin);
 
-		cmd[strcspn(cmd, "\n")] = 0;
+		cmd[strcspn(cmd, "\n")] = 0; // Remove new line character. (\n)
 
 		if (strlen(cmd) == 0) continue; // Skip empty input.
 
-		// Split, the actual command, and one argument, for now.
+		// Split, the actual command, and two arguments.
 		char* command = strtok(cmd, " ");
 		char* arg1 = strtok(NULL, " ");
 		char* arg2 = strtok(NULL, " ");
 
-		if (command != NULL)
+		if (command != NULL) // If command is not empty. (null)
 		{
 			if (strcmp(command, "exit") == 0)
 			{
@@ -59,19 +59,21 @@ int NanoShell(const char* prompt)
 							"4.  ls      = Lists files in the current directory.\n"
 							"5.  cd      = Changes to specified directory.\n"
 							"6.  pwd     = Displays current working directory.\n"
-							"7.  mkdir   = Creates a folder.\n"
-							"8.  rmdir   = Removes an empty folder.\n"
-							"9.  rm      = Removes a file.\n"
-							"10. touch   = Creates an empty file.\n"
-							"11. cat     = Prints the text in the specified file.\n"
-							"12. stat    = Displays information about the specified file.\n"
-							"13. tree    = Displays the specified directory structure.\n"
-							"14. find    = Finds a specified file.\n"
-							"15. date    = Displays date and time.\n"
-							"16. fecho   = Outputs text to specified file.\n"
-							"17. lplugin = Loads a specified plugin.\n"
-							"18. fplugin = Finds plugins in the default directory.\n"
-							"19. sysinfo = Displays information about the system\n", version);
+							"7.  mkdir   = Creates a specified folder.\n"
+							"8.  rmdir   = Removes a specified empty folder.\n"
+							"9.  rm      = Removes a specified file.\n"
+							"10. cp      = Copies specified file to specified folder.\n"
+							"11. mv      = Moves specified file to specified folder.\n"
+							"12. touch   = Creates an empty file.\n"
+							"13. cat     = Prints the text in the specified file.\n"
+							"14. stat    = Displays information about the specified file.\n"
+							"15. tree    = Displays the specified directory structure.\n"
+							"16. find    = Finds a specified file.\n"
+							"17. date    = Displays date and time.\n"
+							"18. fecho   = Outputs text to specified file.\n"
+							"19. lplugin = Loads a specified plugin.\n"
+							"20. fplugin = Finds plugins in the default directory.\n"
+							"21. sysinfo = Displays information about the system\n", version);
 				}
 			}
 
@@ -121,6 +123,20 @@ int NanoShell(const char* prompt)
 				}
 
 				else printf("Use: fecho <text> <filename>\n");
+			}
+
+			else if (strcmp(command, "cp") == 0)
+			{
+				if (arg1 != NULL && arg2 != NULL) Cp(arg1, arg2);
+
+				else printf("Use: cp <source> <destination>\n");
+			}
+
+			else if (strcmp(command, "mv") == 0)
+			{
+				if (arg1 != NULL && arg2 != NULL) Mv(arg1, arg2);
+
+				else printf("Use: mv <source> <destination>\n");
 			}
 
 			else if (strcmp(command, "find") == 0)
@@ -183,5 +199,5 @@ int NanoShell(const char* prompt)
 						"Type \"help\" for information on commands.\n", cmd);
 		}
 	}
-	return 1;
+	return 1; // User did not use exit.
 }
