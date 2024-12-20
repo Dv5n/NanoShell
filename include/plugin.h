@@ -1,6 +1,7 @@
 #ifndef PLUGIN_H
 #define PLUGIN_H
 
+// Plugin interface.
 typedef struct
 {
 	const char* name;

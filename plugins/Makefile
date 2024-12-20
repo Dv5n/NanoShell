@@ -9,4 +9,5 @@ all:
 	$(C) $(ARG) ExamplePlugin.c -o ExamplePlugin.so
 	$(C) $(ARG) ExampleAnimation.c -o ExampleAnimation.so
 	$(C) $(ARG) ClockScreensaver.c -o ClockScreensaver.so
+	$(C) $(ARG) ExampleFPSDisplay.c -o ExampleFPSDisplay.so
 #==============================================================================================================================================#

@@ -84,8 +84,7 @@ void NanoShell(const char* prompt)
 				if (arg1 != NULL)
 				{
 					Plugin* plugin = loadplugin(arg1);  // Load the plugin.
-					if (!plugin) printf("Try again.\n");
-					else plugin->execute(); // Run the plugin.
+					if (plugin) plugin->execute();  // Run the plugin.
 				}
 
 				else printf("Use: lplugin <plugin name>\n");

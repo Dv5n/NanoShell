@@ -19,10 +19,10 @@ void execute()
 			return;
 		}
 
-		printf("\033[H\033[2J\033[3J"); // Clear the screen + scrollback.
-		printf("#=[Date&Time]==============#\n"
+		printf("\033[H\033[2J\033[3J"
+				"#=[Date&Time]==============#\n"
 				"# %s"
-				"#=[NanoShell]==============#\n", asctime(tm_struct));
+				"#=[NanoShell]==============#\n",asctime(tm_struct));
 		sleep(1);
 	}
 }
@@ -31,6 +31,6 @@ Plugin plugin =
 {
 	.name = "ClockScreensaver",
 	.description = "Simple clock screensaver.",
-	.version = "1.0",
+	.version = "1.1",
 	.execute = execute
 };

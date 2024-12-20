@@ -14,7 +14,9 @@ const char* key = "C-HcrcF@TrVKITNU87GcUZV8h8px#yFe";
 const char* releasedate = "19/12/2024";
 uint32_t running; // Used to exit the shell.
 
+// For plugins.
 extern Plugin* loadplugin(const char* pluginN);
+
 extern void discover();
 
 #endif // SHELL_H

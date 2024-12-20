@@ -7,11 +7,11 @@
 
 #define PLUGIN_DIR	"plugins"
 
-Plugin* loadplugin(const char* pluginN)
+Plugin* loadplugin(const char* pluginName)
 {
-	if (pluginN == NULL) return NULL;
+	if (pluginName == NULL) return NULL;
 
-	void* handle = dlopen(pluginN, RTLD_LAZY);
+	void* handle = dlopen(pluginName, RTLD_LAZY);
 	if (!handle)
 	{
 		fprintf(stderr, "Error loading plugin: %s\n", dlerror());
