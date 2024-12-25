@@ -9,11 +9,11 @@
 
 char cmd[BUFFER];
 
-const char* version = "0.3.4";
+const char* version = "0.3.5";
 const char* releasedate = "20/12/2024";
 
 // For plugins.
-extern Plugin* loadplugin(const char* pluginN);
+extern Plugin* loadplugin(const char* pluginName);
 
 extern void discover();
 

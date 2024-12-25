@@ -65,9 +65,9 @@ void discover()
 			}
 
 			printf("Discovered plugin: %s\n", plugin_path);
-			printf("\tName       : %s\n", info->name);
+			printf("\tPlugin Name: %s\n", info->name);
 			printf("\tDescription: %s\n", info->description);
-			printf("\tVersion    : %s\n", info->version);
+			printf("\tVersion    : %s\n\n", info->version);
 
 			dlclose(handle); // Close the handle to prevent memory leaks.
 		}

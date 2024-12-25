@@ -5,7 +5,7 @@
 C := gcc
 
 # NanoShell version.
-VER := 0.3.4
+VER := 0.3.5
 
 # Output directory.
 OUT_DIR := build
@@ -46,7 +46,6 @@ clean:
 
 # (NANOSHELL_C_EDITION) key: C-HcrcF@TrVKITNU87GcUZV8h8px#yFe
 # CatKeyStyle VERSION 2
-# This is a valid CatKeyStyle key.
 # Note: a CatKeyStyle key is a 32 characters long (2-prefix"C-"+30-key) key that must be valid,
 # to be valid it must pass all checks in a specific checker.
 #=========================================================================================================#
