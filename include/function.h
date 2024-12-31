@@ -494,6 +494,21 @@ unsigned int Christmas()
 }
 
 /**
+* Check if it is new year. (1st January)
+* If yes then return 1,
+* If not then return 0.
+*/
+unsigned int NewYear()
+{
+	time_t now = time(NULL);
+	struct tm* tm_info = localtime(&now);
+
+	if (tm_info->tm_mon == 0 && tm_info->tm_mday == 1) return 1;
+
+	return 0;
+}
+
+/**
 * Displays more information, and others,
 * this should be used with the "help" command.
 * And btw a cool Easter egg, did you find it?
@@ -521,6 +536,19 @@ void MoreHelp(const char* help)
 		ascii_art[6]="  /o*o*o*o*o*o\\  ";
 		ascii_art[7]="       |||        ";
 		ascii_art[8]="[Merry Christmas!]";
+	}
+	else if (NewYear() == 1)
+	{
+
+		ascii_art[0]="        *        ";
+		ascii_art[1]="       /*\\       ";
+		ascii_art[2]="      /o*o\\      ";
+		ascii_art[3]="     /*o*o*\\     ";
+		ascii_art[4]="    /o*o*o*o\\    ";
+		ascii_art[5]="   /*o*o*o*o*\\   ";
+		ascii_art[6]="  /o*o*o*o*o*o\\  ";
+		ascii_art[7]="       |||        ";
+		ascii_art[8]="[Happy New Year!] ";
 	}
 	else
 	{
