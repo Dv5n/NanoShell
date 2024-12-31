@@ -5,7 +5,7 @@
 C := gcc
 
 # NanoShell version.
-VER := 0.3.5
+VER := 0.3.6
 
 # Output directory.
 OUT_DIR := build
