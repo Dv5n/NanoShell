@@ -531,21 +531,21 @@ void MoreHelp(const char* help)
 		ascii_art[4]="    ^^^^^^^^^     ";
 		ascii_art[5]="   ^^^^^^^^^^^    ";
 		ascii_art[6]="  ^^^^^^^^^^^^^   ";
-		ascii_art[7]="       |||        ";
-		ascii_art[8]="   [NanoShell]    ";
+		ascii_art[7]="       |||         ";
+		ascii_art[8]="   [NanoShell]     ";
 	}
 
 	if (strcmp(help, "system") == 0)
 	{
-		printf("%s", ascii_art[0]); printf("  NanoShell C Edition, Version: %s\n", version);
-		printf("%s", ascii_art[1]); printf("  ----------------------------------------------------\n");
-		printf("%s", ascii_art[2]); printf("  # Identifier Key : %s\n", "C-HcrcF@TrVKITNU87GcUZV8h8px#yFe");
-		printf("%s", ascii_art[3]); printf("  # Identifier Name: %s\n", identifier_name);
-		printf("%s", ascii_art[4]); printf("  # Original Author: %s\n", original_author);
-		printf("%s", ascii_art[5]); printf("  # Latest Release : %s\n", releasedate);
-		printf("%s", ascii_art[6]); printf("  # First Release  : %s\n", "07/12/2024");
-		printf("%s", ascii_art[7]);  printf(" # License        : %s\n", "GNU General Public License V3");
-		printf("%s", ascii_art[8]);  printf(" ----------------------------------------------------\n");
+		printf("%s", ascii_art[0]); printf(" NanoShell C Edition, Version: %s\n", version);
+		printf("%s", ascii_art[1]); printf(" ---------------------------------------------------\n");
+		printf("%s", ascii_art[2]); printf(" # Identifier Key : %s\n", "C-HcrcF@TrVKITNU87GcUZV8h8px#yFe");
+		printf("%s", ascii_art[3]); printf(" # Identifier Name: %s\n", identifier_name);
+		printf("%s", ascii_art[4]); printf(" # Original Author: %s\n", original_author);
+		printf("%s", ascii_art[5]); printf(" # Latest Release : %s\n", releasedate);
+		printf("%s", ascii_art[6]); printf(" # First Release  : %s\n", "07/12/2024");
+		printf("%s", ascii_art[7]);  printf("# License        : %s\n", "GNU General Public License V3");
+		printf("%s", ascii_art[8]);  printf("---------------------------------------------------\n");
 	}
 
 	else if (strcmp(help, "help") == 0)
