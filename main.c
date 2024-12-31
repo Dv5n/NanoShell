@@ -1,6 +1,6 @@
 // Licensed under GPL (General Public License)
 /*
-Copyright (C) 2024 Dv5n
+Copyright (C) 2024 2025 Dv5n
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
